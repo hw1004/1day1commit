@@ -2,7 +2,7 @@
 ### A collection of every single thing I have learned in a day
 
 ### Format
-- All note file should be written with markdown format.
+- All note files should be written with markdown format.
 - Every single commit should be done before the day pass.
 - All folder and file names should be written in English.
 - I aim to commit everyday even if the amount is small.
