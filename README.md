@@ -10,7 +10,7 @@
 ___
 
 - #### Python
-    - [저장](C:/Users/USER/Github/1day1commit/python/basic/syntax/and/datatype.md)
+    - [저장](https://github.com/hw1004/1day1commit/blob/main/python/basic_syntax_and_datatype.md)
     - [조건]()
     - [반복]()
     - [컨테이너]()
