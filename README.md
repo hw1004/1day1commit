@@ -10,7 +10,7 @@
 ___
 
 - #### Python
-    - [저장]()
+    - [저장](C:\Users\USER\Github\1day1commit\python\basic_syntax_and_datatype.md)
     - [조건]()
     - [반복]()
     - [컨테이너]()
