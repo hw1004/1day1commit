@@ -162,13 +162,13 @@
    - 명시적 형 변환: 의도
      - ex: `print(int('3'))`
 
-![컨테이너형 형 변환]("https://user-images.githubusercontent.com/18046097/61180466-a6a67780-a651-11e9-8c0a-adb9e1ee04de.png")
+![컨테이너형 형 변환](https://user-images.githubusercontent.com/18046097/61180466-a6a67780-a651-11e9-8c0a-adb9e1ee04de.png)
 
      - 컨테이너형들은 range와 dictionary로는 형 변환이 안된다.
      -  dictionary는 string을 제외하고 나머지 형태로 형 변환을 할 때 key만 나열되는 형식으로 형 변환이 일어난다. 
 
 
-5. 컨테이너
+1. 컨테이너
    컨테이너
    - 시퀀스형
      - list (immutable)
@@ -179,7 +179,7 @@
      - set (mutable)
      - dictionary (mutable)
 
-6. 시퀀스형 연산자
+2. 시퀀스형 연산자
    - 시퀀스를 연결 가능
    - 산술 연산자(+)
      - list, tuple, string 가능
