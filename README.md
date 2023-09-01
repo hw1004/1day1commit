@@ -1,5 +1,5 @@
 # 1day 1commit
-### A collection of every single thing I have learned in a day
+### A collection of every single thing I learned in a day
 
 ### Format
 - All note files should be written with markdown format.
