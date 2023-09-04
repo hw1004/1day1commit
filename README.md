@@ -15,7 +15,7 @@ ___
     - [연산자](https://github.com/hw1004/1day1commit/blob/main/python/operator.md)
     - [조건](https://github.com/hw1004/1day1commit/blob/main/python/conditional_statement.md)
     - [반복](https://github.com/hw1004/1day1commit/blob/main/python/loop_statement.md)
-    - [함수]()
+    - [함수](https://github.com/hw1004/1day1commit/blob/main/python/function.md)
     - [객체 클래스]()
 
 
