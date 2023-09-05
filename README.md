@@ -1,11 +1,11 @@
 # 1day 1commit
-### A collection of every single thing I learned in a day
+### 매일매일 새롭게 배운 내용들을 commit 한다
 
 ### Format
-- All note files should be written with markdown format.
-- Every single commit should be done before the day pass.
-- All folder and file names should be written in English.
-- I aim to commit everyday even if the amount is small.
+- 모든 파일은 markdown 형태로 작성한다.
+- 모든 commit은 하루가 지나가기 전에 완료한다.
+- 모든 폴더와 파일명은 영어로 작성한다.
+- 양이 많지 않더라도 꾸준히 작성하는 것을 목표로 한다.
 
 ___
 
