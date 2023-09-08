@@ -29,3 +29,13 @@ instance.method()
 -`isinstance(p, Person)`: p가 Person(클래스)의 인스턴스인지 확인
 
 ## 속성과 메서드
+- **속성**: 객체의 상태/데이터
+  - (ex) person.name
+- **메서드**: 특정 개체가 할 수 있는 행위
+  - (ex) person.talk()
+  - (ex) list의 .append(), .reverse(), .sort() 등등
+
+
+## 인스턴스
+**인스턴스** : class에 속하는 객체
+
