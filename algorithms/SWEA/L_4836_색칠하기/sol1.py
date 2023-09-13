@@ -3,28 +3,33 @@ T = int(input())
 for testcase in range(1, T+1):
     N = int(input())
     
-    p = []
+    colors = []
     for _ in range(N):
-        color = input()
-        p.append(color.split())
-        
-    point = []
-    for num in p:
-        part = []
-        for n in num:
-            part.append(int(n))
-        point.append(part)
-
+        point = [int(i) for i in input().split()]
+        colors.append(point)
     
-    # r1,c1 또는 r2,c2가 다른 사각형의 r1,c1 또는 r2,c2 사이에 존재하면 겹친다.
-    # 색이 반대여야 한다.
+    # 10 x 10 행렬
+    matrix = [[0] * 10 for _ in range(10)]
+    
+    for color in colors:
+        for row in range(color[0], color[2]+1):
+            for column in range(color[1], color[3]+1):
+                # 0일 경우 color[4]로 채워 넣음
+                if matrix[row][column] == 0:
+                    matrix[row][column] = color[4]
+                # 1일 경우, 그리고 color[4]이 2일 경우 3으로 바꿈
+                if matrix[row][column] == 1 and color[4] == 2:
+                    matrix[row][column] = 3
+                # 2일 경우, 그리고 color[4]이 1일 경우 3으로 바꿈
+                if matrix[row][column] == 2 and color[4] == 1:
+                    matrix[row][column] = 3
+    
     duplicate = 0
-    for i in range(len(point)):
-        for j in range(len(point)):
-            if point[i][0] <= point[j][2] and point[i][1] >= point[j][3] and point[i][4] != point[j][4]:
-                duplicate += (point[j][2] - point[i][0] + 1) * (point[i][1] - point[j][3] + 1)
-            elif point[i][0] == point[i][1] and point[j][2] == point[j][3] and point[i][4] != point[j][4]:
-                duplicate += (point[j][2] - point[i][0] + 1) * (point[i][1] - point[j][3] + 1)
+    for row in matrix:
+        for element in row:
+            if element == 3:
+                duplicate += 1
                 
-    print(f'#{testcase} ' + str(duplicate))
+
+    print(f'#{testcase} {duplicate}')
             
