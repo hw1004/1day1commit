@@ -1,5 +1,5 @@
 # 1day 1commit
-### 매일매일 새롭게 배운 내용들을 commit 한다
+### 매일매일 새롭게 배운 내용들을 commit
 
 ### Format
 - 모든 파일은 markdown 형태로 작성한다.
@@ -17,7 +17,7 @@ ___
     - [반복](https://github.com/hw1004/1day1commit/blob/main/python/loop_statement.md)
     - [함수](https://github.com/hw1004/1day1commit/blob/main/python/function.md)
     - [데이터 구조](https://github.com/hw1004/1day1commit/blob/main/python/data_structure.md)
-    - [객체 클래스]()
+    - [객체 클래스](https://github.com/hw1004/1day1commit/blob/main/python/oop.md)
 
 
   
