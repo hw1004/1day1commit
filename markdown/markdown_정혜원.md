@@ -91,8 +91,8 @@ $ git push origin master
 #### 수평선
 - `---`, `***`, `___` 을 입력하여 작성합니다.
 
-
 Working Directory
+
 ---
 Staging Area
 ***
