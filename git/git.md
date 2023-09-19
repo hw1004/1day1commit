@@ -7,14 +7,32 @@
 - backup
 - collaborate
 
-### Version (버전 관리)
-
-
 ## Git CLI - Version Control
 명령어를 이용해서 Git을 제어할 수 있다.
 
 - Git이 익숙해지면 복잡한 gui 없이 Git을 다룰 수 있다.
 - 처리할 일을 한번에 명령하여 한번에 처리할 수 있음
 - GUI로 제어할 수 없는 서버 환경에서도 사용할 수 있는 유일한 방법
+
+|Working Tree|Staging Area|Repository|
+|---|---|---|
+|파일 생성, 수정 단계로 수정된 내용 포함함(Version이 만들어지기 전)|파일 10개 중 2개를 Version으로 만들 때 staging area에 2개의 파일을 올림(Git에게 명령 시 2개만 Version화 됨)|version이 저장되어 있는 곳(저장소) - |
+|`git add`이전|`git add`이후|commit 이후
+
+`git status`를 입력했을 때 No commit Yet이라고 뜨면 아직 커밋된 것이 없어 Version이 존재하지 않는다는 의미이다.
+
+### 여러개의 파일 Grouping
+- 여러개의 파일을 하나의 버전으로 만들 수 있다. 수정된 이전 파일이든 새로 추가된 파일이든 `git add`를 수행하고 여러개의 파일 변경 내역을 한번에 commit할 수 있다.
+
+- `git log --stat`: 한번의 version에 포함된 파일들의 이름과 추가된 줄 들의 개수를 출력한다.
+
+
+## 기타
+### 추가 Git 명령어
+|명령어|설명|예시|
+|---|---|---|
+|nano|파일을 만들고 그 파일 안의 내용을 입력한다. 내용 입력 후 `ctrl + x`를 누르고 `Y`를 누르고 `Enter`를 누르면 저장됨|`nano hello.txt`|
+|git diff|commit 사이에 다른점을 보요주는 명령어(Working Directory와 Staging Area 사이의 차이 확인)|add를 통해 staging area로 넘어가면 git diff 안나타남. 이전 add 이후에 아직 add하기 이전의 Working Directory에 있는 수정 내용이 git diff 값으로 나옴|
+|git log -p|문제가 생겼을 때 어디 부분에서 오류가 생겼는지 알 수 있음||
 
 
