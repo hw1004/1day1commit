@@ -8,7 +8,7 @@
 
 ___
 - ### CLI
-  - [CLI 기본 명령어](https://github.com/hw1004/1day1commit/blob/main/CLI/gui_and_cli.md)
+  - [CLI 기본 명령어](https://github.com/hw1004/1day1commit/blob/main/CLI/CLI_%EC%A0%95%ED%98%9C%EC%9B%90.md)
 
 - ### Python
   - [기초 문법 및 데이터 타입](https://github.com/hw1004/1day1commit/blob/main/python/basic_syntax_and_datatype.md)
