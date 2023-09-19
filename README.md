@@ -1,5 +1,4 @@
 # 1day 1commit
-## 매일매일 새롭게 배운 내용들을 commit
 
 ## Format
 - 모든 파일은 markdown 형태로 작성한다.
