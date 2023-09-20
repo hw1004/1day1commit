@@ -34,5 +34,8 @@
 |nano|파일을 만들고 그 파일 안의 내용을 입력한다. 내용 입력 후 `ctrl + x`를 누르고 `Y`를 누르고 `Enter`를 누르면 저장됨|`nano hello.txt`|
 |git diff|commit 사이에 다른점을 보요주는 명령어(Working Directory와 Staging Area 사이의 차이 확인)|add를 통해 staging area로 넘어가면 git diff 안나타남. 이전 add 이후에 아직 add하기 이전의 Working Directory에 있는 수정 내용이 git diff 값으로 나옴|
 |git log -p|문제가 생겼을 때 어디 부분에서 오류가 생겼는지 알 수 있음||
+|code .|git bash에서 현재 폴더를 vs code로 열 때||
+|git restore|working directory에서의 change 취소|`git restore README.md`|
+|git checkout|git log 조회했을 때 버전 별로 주어진 숫자(코드)가 있다. 그 숫자를 이용하여 checkout하면 과거의 변경사항이 삭제된다.|`git checkout 33664ba`, `git checkout master`|
 
 
