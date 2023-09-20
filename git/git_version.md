@@ -7,7 +7,7 @@
 - backup
 - collaborate
 
-## Git CLI - Version Control
+## 버전 관리 Git CLI - Version Control
 명령어를 이용해서 Git을 제어할 수 있다.
 
 - Git이 익숙해지면 복잡한 gui 없이 Git을 다룰 수 있다.
@@ -26,6 +26,16 @@
 
 - `git log --stat`: 한번의 version에 포함된 파일들의 이름과 추가된 줄 들의 개수를 출력한다.
 
+### 추가
+- `git add .`: 파일 하나하나 add 안해도 directory 내에 있는 모든 파일 add 가능
+- `git commit -am`: add와 commit 동시에 (하지만 Untracked files에 대해서는 작동하지 않음)
+
+### 버전 reset
+- `git reset --hard`: git 버전의 변경사항 삭제 (git log에서 나오는 숫자에 해당하는 버전**으로** 리셋)
+- collaboration에서 이미 공유된 버전은 리셋하면 안됨!!
+
+### 버전 revert
+- R3라는 버전으로 리셋되고 싶다면 `reset` 할 때는 R3로, `revert` 할 때는 그 이후의 버전인 R4로 지정해야 R4까지 revert(R3로 리셋된다).
 
 ## 기타
 ### 추가 Git 명령어
@@ -37,5 +47,6 @@
 |code .|git bash에서 현재 폴더를 vs code로 열 때||
 |git restore|working directory에서의 change 취소|`git restore README.md`|
 |git checkout|git log 조회했을 때 버전 별로 주어진 숫자(코드)가 있다. 그 숫자를 이용하여 checkout하면 과거의 변경사항이 삭제된다.|`git checkout 33664ba`, `git checkout master`|
-
+|git remote|존재하는 원격저장소 확인|
+|git remote remove|원격저장소 이름 제거 (기존에 연결된 원격 저장소 제거할 때)|`git remote remove origin`|
 
