@@ -24,6 +24,8 @@
 |`<video src="#" width="100" height="100" controls>`|video 주소 src|`<video src="#" width="100" height="100" controls> Video not supported </video>` 해당 비디오가 load 안되면 `Video not supported`를 내보인다.|
 |`<a href="http://~">`|하이퍼링크 생성|`<a href="http:/~><img src="logo.jpg">Click this image</a>`와 같이 이미지를 클릭하면 해당 링크로 이동할 수 있게 설정할 수 있음/ `target="_blank"`를 추가하면 링크가 브라우제에서 새로운 탭에 열도록 설정할 수 있다.|
 |`#`|하이퍼링크 `<a>`로 생성 시 같은 HTML 문서의 특정 paragraph나 부분으로 이동하게 설정하고 싶으면 `#`에 id를 붙여서 설정하면 된다.|`<a href="#id">`|
+|`id`|고유하게 지정하는 것|문서전체에서 유일무의하게 지정해야 하기 때문에 중복 X|
+|`class`|그룹으로 묶어서 지정할 때 쓰는 것|CSS 스타일 지정할 때 사용됨|
 
 ## HTML Table
 |HTML element|설명|비고|

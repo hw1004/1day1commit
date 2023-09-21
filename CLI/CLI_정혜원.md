@@ -13,7 +13,7 @@
 |touch|파일을 생성한다|`$ touch a.txt`|
 |rm|파일을 삭제한다|`$ rm a.txt`|
 |rm -r|폴더를 삭제한다|`$ rm -r my_dir`|
-|mv a b|파일/폴더명 a에서 b로 변경 OR 파일/폴더 a를 경로 b로 이동|`$ mv git github`, `$ mv github TIL`|
+|mv a b|파일/폴더명 a에서 b로 변경 OR 파일/폴더 a를 경로 b로 이동|`$ mv git github`, `$ mv github TIL`, `$ mv a ..`: a 파일을 지금 폴더의 전 폴더로 이동|
 |cp a b|파일 a를 b로 복사|`$ cp a.txt copy/`|
 |cp -r a b|폴더 a를 b로 복사|`$ cp -r python CLI`|
 |ls|현재 위치 폴더 또는 특정 경로의 모든 하위 항목 표시|`$ ls`, `$ ls python`|

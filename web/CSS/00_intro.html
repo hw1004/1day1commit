@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 3 -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- 2 모든 p 태그 일괄 적용(디자인 통일성) -->
+    <style>
+        p {
+            color: green;
+            font-size: 24px;
+        }
+
+        a {
+            color: green;
+            font-size: 24px;
+        }
+        .green-md {
+            color: green;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. inline css (마크업에 직접) => X 디자인 통일성이 없기 때문/우선순위가 가장 셈 -->
+    <p style="font-size: 30px; color: red;">
+        Inline CSS
+    </p>
+
+    <!-- 2. <head> 안에 <style> 을 정의 하기 -->
+    <p class="green-md">Head Style Tag</p>
+    <a href="#" class="green-md"> This is LINK</a>
+
+    <!-- 3. 별도의 CSS 파일로 분리하기 -->
+    <p class="blue-sm">Sperated .css file</p>
+</body>
+</html>
