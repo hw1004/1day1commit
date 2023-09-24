@@ -1,6 +1,10 @@
 # HTML
 > HTML(Hyper Text Markup Langauge)는 웹페이지에 content를 부여하고 그 content를 어떻게 구조화할건지를 웹 브라우저에 지시한다.
 
+## Attribute
+요소의 성질, 특징
+![attribute](https://poiemaweb.com/img/html-attribute.png)
+
 ## Basic HTML elements
 
 |HTML element|설명|비고|
@@ -26,6 +30,8 @@
 |`#`|하이퍼링크 `<a>`로 생성 시 같은 HTML 문서의 특정 paragraph나 부분으로 이동하게 설정하고 싶으면 `#`에 id를 붙여서 설정하면 된다.|`<a href="#id">`|
 |`id`|고유하게 지정하는 것|문서전체에서 유일무의하게 지정해야 하기 때문에 중복 X|
 |`class`|그룹으로 묶어서 지정할 때 쓰는 것|CSS 스타일 지정할 때 사용됨|
+|`lang`|요소의 언어를 지정함. 검색엔진 크롤링 시 언어를 인식할 수 있게 함|예시: 크롬의 자동번역 interface/ `<html lang="ko-KR>`|
+|`style`|요소에 인라인 스타일 지정|
 
 ## HTML Table
 |HTML element|설명|비고|
@@ -41,4 +47,45 @@
 |`<td colspan="2">`|같은 row에 있는 2개의 data를 병합|`<td colspan="2">14</td>`에서는 14가 병합된 부분에 들어갈 값이다.|
 |`<td rowspan="2">`|같은 column에 있는 2개의 row data 병합|병합 안된 부분은 순서에 따라 순차적으로 추가한다.|
 
+## Semantic Web
+- **웹사이트**는 **검색엔진**에의 노출이 매우 중요하다.
+- SEO(Search Engine Optimization): 검색엔진이 본인의 웹사이트를 검색하기 알맞은 최적의 구조
+- **크롤링**: 검색엔진이 Robot을 통해 전세계의 웹사이트 정보 수집하는 행위
+- **인덱싱**: User가 검색할 만한 키워드를 미리 예상해서 검색 키워드에 대응하는 **인덱스**를 만드는 행위(행위 주체: **인덱서**)
+### Semantic element
+> 검색 엔진이 HTML 코드만으로 의미를 인지해야 하는데, 이때 해석하는 것이 **시맨틱 요소(Sementic elemet)**이다.
+
+```
+# 의미론적으로 아무 의미 X
+<font size="6"><b>Hello</b></font>
+# header 중 가장 상위 레벨이라는 의미
+<h1>Hello</h1>
+```
+요소의 의미가 명확히 드러나는 것의 중요성
+- 코드의 가독성 상승
+- 유지보수 쉬워짐
+
+#### 시맨틱 태그(Semantic Tag)
+> 브라우저, 검색 엔진, 개발자 모두에게 *콘텐츠의 의미*를 명확히 설명하는 역할
+
+![시맨틱 태그](https://poiemaweb.com/img/building-structure.png)
+
+|semantic tag|설명|
+|---|---|
+|`nav`|네비게이션 의미, `<ul>`, `<li>`태그와 메뉴를 만들 때 사용하는 것이 일반적|
+|`aside`|본문 내용과 분리되는 내용을 사이드에 위치하는 공간에 배치할 때 사용|
+|`header`|도입부 또는 nav 링크의 집합이 들어감|
+|`section`|article을 포함하는 공간|
+|`article`|본문의 주내용이 들어가는 공간|
+|`footer`|저자 정보, 저작권 정보, 연락처, 연관 페이지 등 가장 아래에 올 내용들을 포함|
+
+
+
+#### 시맨틱 웹(Semantic Web)
+> 수많은 웹페이지들에 Metadata(데이터에 관한 표준화되고 구조화된 데이터)를 부여하여 웹페이지를 단순한 데이터의 집합이 아닌 **의미와 관련성**을 가지는 데이터베이스로 구축하는 웹 개념
+
+|non-semantic 요소|semantic 요소|
+|---|---|
+|content에 대한 설명 X|content에 대한 설명 명확|
+|div, span|form, table, img|
 
