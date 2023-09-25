@@ -31,6 +31,4 @@ ___
 - #### [HTML](https://github.com/hw1004/1day1commit/tree/main/web/HTML)
 - #### [CSS](https://github.com/hw1004/1day1commit/tree/main/web/CSS)
 - #### [Bootstrap](https://github.com/hw1004/1day1commit/tree/main/web/Bootstrap)
-
-### Django
-- [Django](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
+- #### [Django](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
