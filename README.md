@@ -1,4 +1,4 @@
-# 1day 1commit
+# TIL(Today I Learned)
 
 ## Format
 - 모든 파일은 markdown 형태로 작성한다.
