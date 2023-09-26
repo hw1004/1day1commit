@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- form action="목적지" 입력한 값 보내는 목적지 -->
+<form action="/user_input/pong/"> 
+    <p>
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username">
+    </p>
+
+    <p>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password">
+    </p>
+    
+    <p>
+        <label for="color">Color: </label>
+        <input type="color" id="color">
+    </p>
+
+    <p>
+        <input type="submit" value="얍!">
+        <button>야얍!</button>
+    </p>
+</form>
+
+<button>호이!</button>
+
+{% endblock content %}
+
