@@ -49,3 +49,58 @@ python manage.py startapp first_app
 5. runserver
 `python manage.py runserver`을 실행하고 고정값 http://127.0.0.1:8000/ 뒤에 customizing 해주면 원하는 function view의 html 파일을 웹으로 확인할 수 있다.
 - (Ex) http://127.0.0.1:8000/first_app/lotto/
+
+### base.html
+- 반복되는 !DOCTYPE format을 base.html로 통일시킴
+- 여러 html 파일을 하나의 base.html 파일에서 이용
+- 프로젝트 파일 BASE_DIR의 바로 하위에 있는 templates에 base.html을 생성한다.
+- `<nav>` 안에 `<li>`, `<a>`를 이용해서 list의 요소들을 클릭하면 특정 html을 하이퍼링크로 이동하게 설정 가능.
+
+```
+# base.html에 사용될 html 파일들에는 base.html을 extend 해줌
+{% extends "base.html" %}   
+
+# base.html 파일에서 정의한 block을 다른 html 파일에 사용하여 base.html에서 사용될 내용을 각각의 html 파일의 block에 지정한다.
+
+{% block content %}
+<h1>This is index</h1>
+{% endblock content %}
+```
+
+## Form
+- 입력폼 html 생성
+- 입력 값 검증
+- 검증 통과했으면 사전타입으로 제공
+
+### 변수
+생성한 app의 urls.py와 views.py에서 함수를 생성할 때 keyword argument를 삽입하고 싶을 때
+```
+# urls.py
+# 변수명이 name인데 변수를 받으면 str로 인식한다.
+path('hello/<str:name>/', views.hello)
+
+# views.py
+# urls.py에서 변수를 지정한 함수는 keyword argument로 name을 받는다.
+# 변수가 변함에 따라 변수가 사용된 콘텐츠도 변할 수 있다.
+def hello(request, name):
+    print(name)   # keyword argument
+    message = f'반갑습니다. {name}'
+    return render(request, 'user_input/hello.html', {
+        'message': message,
+    })
+```
+- 변수를 이용한 text 또는 다른 형태의 값들은 context를 이용하여 base.html 파일에서도 사용할 수 있다.
+
+### Form과 input
+
+아래의 표에 나오는 tag는 ping.html의 block에서 사용되는 예시
+
+|tag|description|
+|---|---|
+|`<form action="/user_input/pong/">`|입력한 input 값을 보내는 목적지가 "/user_input/pong/"이다.|
+|`<label for="username">Username: </label>`|label값/ 입력창 옆에 표시되는 label명 지정|
+|`<input type="text" id="username" name="username">`|text `type`으로 input을 받고 지정한 label값은 `id` "username"과 연동되며 key값이 `name`으로 지정한 username, value값이 입력한 값이 됨|
+|`<input type="submit" value="Enter">`|"Enter"이라는 버튼을 누르면 입력된 값을 지정된 목적지로 보낼 수 있다. form tag 내에 위치해 있어야 작동이 된다.|
+|`request.GET['key']`|위에서 name을 지정한 input tag의 사용법에 따르면 입력값은 dictionary 형태로 지정된다. views.py 파일에서 입력받은 value값을 이용하기 위해서는 request.GET['key명']을 통해 value의 값을 받아야 한다. 지정한 value 값을 context로 지정하면 목적지인 pong.html에서도 이 입력값들을 사용할 수 있다.|
+
+- input의 타입은 html의 input type attribute value이며, text, color, date, password, submit 등 다양하다.
