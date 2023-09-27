@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/util/lotto_out/"> 
+    <p>
+        <label for="number1">Number 1: </label>
+        <input type="number" id="number1" name="number1" min="1" max="45">
+    </p>
+    <p>
+        <label for="number2">Number 2: </label>
+        <input type="number" id="number2" name="number2" min="1" max="45">
+    </p>
+    <p>
+        <label for="number3">Number 3: </label>
+        <input type="number" id="number3" name="number3" min="1" max="45">
+    </p>
+    <p>
+        <label for="number4">Number 4: </label>
+        <input type="number" id="number4" name="number4" min="1" max="45">
+    </p>
+    <p>
+        <label for="number5">Number 5: </label>
+        <input type="number" id="number5" name="number5" min="1" max="45">
+    </p>
+    <p>
+        <label for="number6">Number 6: </label>
+        <input type="number" id="number6" name="number6" min="1" max="45">
+    </p>
+    <p>
+        <input type="submit" value="submit">
+    </p>
+</form>
+{% endblock content %}
+

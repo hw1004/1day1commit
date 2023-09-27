@@ -6,4 +6,8 @@ urlpatterns = [
     path('', views.index),
     
     path('clock/', views.clock),
+    
+    path('lotto_in/', views.lotto_in),
+    
+    path('lotto_out/', views.lotto_out),
 ]
