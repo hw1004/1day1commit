@@ -104,3 +104,8 @@ def hello(request, name):
 |`request.GET['key']`|위에서 name을 지정한 input tag의 사용법에 따르면 입력값은 dictionary 형태로 지정된다. views.py 파일에서 입력받은 value값을 이용하기 위해서는 request.GET['key명']을 통해 value의 값을 받아야 한다. 지정한 value 값을 context로 지정하면 목적지인 pong.html에서도 이 입력값들을 사용할 수 있다.|
 
 - input의 타입은 html의 input type attribute value이며, text, color, date, password, submit 등 다양하다.
+
+## Crawling
+> JSON은 데이터 형식이며 json 형식의 데이터에서 필요한 데이터를 crawling 해올 수 있다.
+> BeautifulSoup으로부터 `soup.select_one('#id')`를 통해 id에 해당하는 내용을 가져올 수 있다. 
+> F12키 -> copy -> copy selector을 이용해 #id의 값을 복사할 수 있다.

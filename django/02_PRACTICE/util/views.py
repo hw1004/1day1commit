@@ -29,7 +29,7 @@ def lotto_out(request):
     
     my = [number1, number2, number3, number4, number5, number6]
     
-    # real lotto number and bonus request from url
+    # real lotto number and bonus / request from url
     res = requests.get('https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=1086')
     data = res.json()
     
