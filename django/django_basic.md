@@ -56,12 +56,12 @@ python manage.py startapp first_app
 - 프로젝트 파일 BASE_DIR의 바로 하위에 있는 templates에 base.html을 생성한다.
 - `<nav>` 안에 `<li>`, `<a>`를 이용해서 list의 요소들을 클릭하면 특정 html을 하이퍼링크로 이동하게 설정 가능.
 
+
+- base.html에 사용될 html 파일들에는 base.html을 extend 해줌
+- `{% extends "base.html" %}`   
+
+- base.html 파일에서 정의한 block을 다른 html 파일에 사용하여 base.html에서 사용될 내용을 각각의 html 파일의 block에 지정한다.
 ```
-# base.html에 사용될 html 파일들에는 base.html을 extend 해줌
-# {% extend "base.html" %}   
-
-# base.html 파일에서 정의한 block을 다른 html 파일에 사용하여 base.html에서 사용될 내용을 각각의 html 파일의 block에 지정한다.
-
 {% block content %}
 <h1>This is index</h1>
 {% endblock content %}
