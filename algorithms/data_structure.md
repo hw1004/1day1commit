@@ -50,3 +50,8 @@
 |in-order traverse|왼쪽 자식 방문하고 root 방문|
 |post-order traverse|오른쪽 자식 방문하고 root 방문|
 
+### Binary Indexed Tree
+- 2진법 인덱스 구조를 활요하여 구간 합 문제를 효과적으로 해결해 줄 수 있는 자료구조
+- 정수에 따른 2진수 표기
+- 0이 아닌 마지막 비트를 찾을 때 숫자 K & -K로 &연산(교집합)을 수행해준다.
+
