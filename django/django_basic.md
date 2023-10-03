@@ -58,7 +58,7 @@ python manage.py startapp first_app
 
 ```
 # base.html에 사용될 html 파일들에는 base.html을 extend 해줌
-# {% extends "base.html" %}   
+# {% extend "base.html" %}   
 
 # base.html 파일에서 정의한 block을 다른 html 파일에 사용하여 base.html에서 사용될 내용을 각각의 html 파일의 block에 지정한다.
 
