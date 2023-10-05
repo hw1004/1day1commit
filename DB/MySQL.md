@@ -21,11 +21,11 @@
    6. `SELECT * FRROM table_name;` : 특정한 테이블의 모든 row 출력
 3. **NULL**
     -  ```
-      CREATE TABLE table_name(
-        name VARCHAR(20) NOT NULL,
-        age INT NOT NULL
-      );
-      ```
+        CREATE TABLE table_name(
+          name VARCHAR(20) NOT NULL,
+          age INT NOT NULL
+        );
+       ```
       `NOT NULL`을 특정 칼럼에 설정해 줄 수 있음. 그러면 NULL 값을 허용해주지 않아 특정 칼럼은 **필수**적으로 insert되어야 할 칼럼임을 명시해줌.
 4. **DEFAULT**
     - table을 생성할 때 `name VARCHAR(20) DEFAULT 'No name'`으로 기본값을 설정해줄 수 있음. 
