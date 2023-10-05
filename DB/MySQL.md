@@ -1,5 +1,5 @@
 # MySQL
-## Database 생성과 Table 생성 (CRUD)
+## Database 생성과 Table 생성
 
 1. **Database**
    1. `SHOW DATABASES;` : 데이터베이스의 목록을 보여줌
@@ -33,3 +33,14 @@
    1. table을 생성할 때 `id INT NOT NULL PRIMARY KEY`로 작성하면 id가 primary key로 지정이 되고 중복을 허용하지 않는 id값이 된다.
    2. `id INT NOT NULL AUTO_INCREMENT PRIMARY KEY`로 지정하면 id 값이 1부터 순차적으로 저절로 늘어나는 primary key가 된다.
 
+## Table 조회와 수정, 삭제
+1. Read 조회
+   - `SELECT * FROM <table>`로 table을 조회할 수 있다. 
+   - `*` 대신에 `name, age`와 같은 요소들을 삽입하여 특정 칼럼들만 조회할 수 있다.
+   - `SELECT * FROM <table> WHERE <condition>` 에서 조건을 설정하여 조건을 만족하는 row들만 조회할 수 있다.
+   - `SELECT name AS '이름'`을 통해 조회되는 Table의 칼럼명을 지정할 수 있다.
+2. Update 수정
+   - `UPDATE <table> SET <col>=<val> WHERE <condition>` : 조건을 만족하는 칼럼들의 값을 `<val>`로 수정한다. 
+3. Delete 삭제
+   - `DELETE FROM <table> WHERE <condition>` : 조건을 만족하는 row를 삭제할 수 있다.
+   - `DELETE FROM <table>`을 통해 전체 테이블의 데이터를 삭제할 수 있다. Table의 구조를 지우는 것은 아니며 Table 전체를 없애고 싶을 때는 `DROP TABLE <table>`을 사용한다.
