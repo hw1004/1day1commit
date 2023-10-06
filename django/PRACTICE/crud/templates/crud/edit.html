@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="/school/{{ student.pk }}/update/">
+    <div>
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" value="{{ student.name }}">
+    </div>
+    <div>
+        <label for="age">나이</label>
+        <input type="text" id="age" name="age" value="{{ student.age }}">
+    </div>
+    <div>
+        <label for="major">전공</label>
+        <input type="text" id="major" name="major" value="{{ student.major }}">
+    </div>
+    <div>
+        <label for="description">비고</label>
+        <textarea name="description" id="description" cols="30" rows="10">{{ student.description }}</textarea>
+    </div>
+    <div>
+        <button onclick="alert('내용을 수정하시겠습니까?')">수정하기</button>
+    </div>
+</form>
+
+{% endblock content %}
+
+

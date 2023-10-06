@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ student.name }}</h1>
+
+<p>나이: {{ student.age }}</p>
+<p>전공: {{ student.major }}</p>
+<p>비고: {{ student.description }}</p>
+
+<div>
+    <a href="/school/{{ student.pk }}/edit">
+        <button>학생 정보 수정하기</button>
+    </a>
+</div>
+<div>
+    <a href="/school/{{ student.pk }}/delete">
+        <button onclick="alert('{{ student.name }} 학생 정보를 삭제하시겠습니까?')">학생 정보 삭제하기</button>
+    </a>
+</div>
+{% endblock content %}
+
+

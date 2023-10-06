@@ -34,4 +34,4 @@ ___
 - #### [Django](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
 
 ### Database
-- [MySQL]()
+- [MySQL](https://github.com/hw1004/TIL/tree/main/DB)
