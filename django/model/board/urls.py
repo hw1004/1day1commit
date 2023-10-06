@@ -1,13 +1,17 @@
-from django.db import models
+from django.contrib import admin
+from django.urls import path
+from . import views
 
-# Create your models here.
-class Article(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    
-# 1. app => board
-# 2. model => Article
-# 3. id, title(VARCHAR 200), content(TextField)
+urlpatterns = [
+    path('', views.index),
+    path('new/', views.new),
+    path('create/', views.create),
+    path('<int:pk>/', views.detail),
+    path('edit/<int:pk>/', views.edit),
+    path('update/<int:pk>/', views.update),
+    path('delete/<int:pk>/', views.delete)
+]
+
 
 # /board/new/ => new 함수 실행 => new.html return (사용자 글을 쓸 곳 - 내용 비워두기)
 # /board/create/ => create 함수 실행 => 내용 비워놓기

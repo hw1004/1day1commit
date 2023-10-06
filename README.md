@@ -32,3 +32,6 @@ ___
 - #### [CSS](https://github.com/hw1004/1day1commit/tree/main/web/CSS)
 - #### [Bootstrap](https://github.com/hw1004/1day1commit/tree/main/web/Bootstrap)
 - #### [Django](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
+
+### Database
+- [MySQL]()
