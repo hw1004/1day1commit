@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<form action="/school/{{ student.pk }}/update/">
+<!-- "/school/{{ student.pk }}/update/" -->
+<form action="{% url "crud:update" student. pk %}">
     <div>
         <label for="name">이름</label>
         <input type="text" id="name" name="name" value="{{ student.name }}">

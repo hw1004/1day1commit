@@ -9,12 +9,14 @@
 <p>비고: {{ student.description }}</p>
 
 <div>
-    <a href="/school/{{ student.pk }}/edit">
+    <!-- "/school/{{ student.pk }}/edit" -->
+    <a href="{% url "crud:edit" student.pk %}">
         <button>학생 정보 수정하기</button>
     </a>
 </div>
 <div>
-    <a href="/school/{{ student.pk }}/delete">
+    <!-- "/school/{{ student.pk }}/delete" -->
+    <a href="{% url "crud:delete" student.pk %}">
         <button onclick="alert('{{ student.name }} 학생 정보를 삭제하시겠습니까?')">학생 정보 삭제하기</button>
     </a>
 </div>

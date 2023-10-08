@@ -12,7 +12,8 @@ def create(request):
     student.major = request.GET['major']
     student.description = request.GET['description']
     student.save()
-    return redirect(f'/school/{student.pk}/')
+    # f'/school/{student.pk}/'
+    return redirect('crud:detail', student.pk)
 
 def index(request):
     students = Student.objects.all()
@@ -39,9 +40,11 @@ def update(request, pk):
     student.major = request.GET['major']
     student.description = request.GET['description']
     student.save()
-    return redirect(f'/school/{student.pk}/')
+    # f'/school/{student.pk}/'
+    return redirect('crud:detail', student.pk)
 
 def delete(request, pk):
     student = Student.objects.get(pk=pk)
     student.delete()
-    return redirect('/school/')
+    # '/school/'
+    return redirect('crud:index')

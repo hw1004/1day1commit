@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path('school/', include('crud.urls')),
+    path('univ/', include('crud.urls')),  # school에서 univ로 바뀌어도 작동하게끔 app_name:name 형식을 사용한다.
 ]
