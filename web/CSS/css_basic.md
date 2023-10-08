@@ -22,6 +22,12 @@
 |---|---|---|
 |`*`|HTML 문서 내의 모든 요소|`* {color: red; }`|
 |Tag|지정된 태그|`p {color: red; }`, `h1 {color: pink}`|
-|class|지정된 class 어트리뷰트 값|
+|`#ID`|지정된 id 어트리뷰트 값(중복 될 수 없는 유일한 값)|`#p1 {color:red;}`|
+|`.class`|지정된 class 어트리뷰트 값|`.container {color:red;}`|
+|`selector[Attribute]`|지정된 어트리뷰트를 갖는 모든 요소 선택|`a[href] { color:red; }`이면 `<a href="#">` 형식의 모든 요소 선택|
+|`selector[attribute="값"]`| 지정된 어트리뮤트를 가지며 추가적으로 지정된 값을 가지는 모든 요소 선택|`a[target="_blank"]`이면 `<a href="#" target="_blank">` 형식의 모든 요소 선택|
+|`selector[attribute ~= "값"]`|지정된 어트리뷰트의 값이 지정된 값을 단어로 포함하는 요소 선택|`h1[title="first"]`이면 `<h1 title="heading first">`와 같이 first를 포함하는 요소들을 선택 단, -first와 같이 공백으로 분리되지 않은 요소는 안됨|
+|selector[attribute &#124;= "값"]|지정된 값 or 값- 으로 시작하는 요소 선택|p[lang&#124;="en"] {color:red} 이면 
+
 
 
