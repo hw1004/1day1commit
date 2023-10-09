@@ -15,7 +15,7 @@ ___
 - [Data structure](https://github.com/hw1004/TIL/blob/main/algorithms/data_structure.md)
 - [DFS & BFS](https://github.com/hw1004/TIL/blob/main/algorithms/DFS_BFS.md)
 - [Disjoint set algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/disjoint_set_algorithms.md)
-- [Optimization algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/optimized_algorithms.md)
+- [Graph Theory](https://github.com/hw1004/TIL/blob/main/algorithms/optimized_algorithms.md)
 
 ### Python
 - [기초 문법 및 데이터 타입](https://github.com/hw1004/1day1commit/blob/main/python/basic_syntax_and_datatype.md)
