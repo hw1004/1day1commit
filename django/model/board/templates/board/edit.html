@@ -2,7 +2,12 @@
 
 {% block content %}
 
-<form action="/board/update/{{ article.pk }}">
+<!-- /board/update/{{ article.pk }} -->
+<form action="{% url 'board:update' article.pk %}" method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+    <!--
     <div>
         <label for="title">제목</label>
         <input type="text" id="title" name="title" value="{{ article.title }}">
@@ -11,6 +16,7 @@
         <label for="content">내용</label>
         <textarea name="content" id="content" cols="30" rows="10">{{ article.content }}</textarea>
     </div>
+-->
     <div>
         <button>수정하기</button>
     </div>

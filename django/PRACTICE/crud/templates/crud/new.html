@@ -2,23 +2,14 @@
 
 {% block content %}
 <!-- "/school/create/" -->
-<form action="{% url "crud:create" %}">
-    <div>
-        <label for="name">이름</label>
-        <input type="text" id="name" name="name">
-    </div>
-    <div>
-        <label for="age">나이</label>
-        <input type="text" id="age" name="age">
-    </div>
-    <div>
-        <label for="major">전공</label>
-        <input type="text" id="major" name="major">
-    </div>
-    <div>
-        <label for="description">비고</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    </div>
+<form action="{% url "crud:create" %}" method="POST">
+    {% csrf_token %}
+
+    <table>
+        {{ form.as_table }}
+    </table>
+    
+
     <div>
         <button>제출</button>
     </div>

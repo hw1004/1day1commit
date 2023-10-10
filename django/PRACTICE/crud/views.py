@@ -1,19 +1,24 @@
 from django.shortcuts import render, redirect
 from .models import Student
+from .forms import StudentForm
 
 # Create your views here.
 def new(request):
-    return render(request, 'crud/new.html')
+    form = StudentForm()
+    return render(request, 'crud/new.html',{
+        'form': form
+    })
 
 def create(request):
-    student = Student()
-    student.name = request.GET['name']
-    student.age = request.GET['age']
-    student.major = request.GET['major']
-    student.description = request.GET['description']
-    student.save()
-    # f'/school/{student.pk}/'
-    return redirect('crud:detail', student.pk)
+    form = StudentForm(data=request.POST)
+    
+    if form.is_valid():
+        student = form.save()
+        return redirect('crud:detail', student.pk)
+    else:
+        return render(request, 'board:detail', {
+            'form': form
+        })
 
 def index(request):
     students = Student.objects.all()
@@ -29,19 +34,24 @@ def detail(request, pk):
 
 def edit(request, pk):
     student = Student.objects.get(pk=pk)
+    form = StudentForm(instance=student)
     return render(request, 'crud/edit.html', {
         'student': student,
+        'form': form,
     })
 
 def update(request, pk):
     student = Student.objects.get(pk=pk)
-    student.name = request.GET['name']
-    student.age = request.GET['age']
-    student.major = request.GET['major']
-    student.description = request.GET['description']
-    student.save()
-    # f'/school/{student.pk}/'
-    return redirect('crud:detail', student.pk)
+    form = StudentForm(data=request.POST, instance=student)
+    
+    if form.is_valid():
+        student = form.save()
+        return redirect('crud:detail', student.pk)
+    else:
+        return render(request, 'crud/edit.html', {
+            'student': student,
+            'form': form
+        })
 
 def delete(request, pk):
     student = Student.objects.get(pk=pk)
