@@ -10,15 +10,16 @@
 
 <div>
     <!-- "/school/{{ student.pk }}/edit" -->
-    <a href="{% url "crud:edit" student.pk %}">
+    <a href="{% url "crud:update" student.pk %}">
         <button>학생 정보 수정하기</button>
     </a>
 </div>
 <div>
     <!-- "/school/{{ student.pk }}/delete" -->
-    <a href="{% url "crud:delete" student.pk %}">
+    <form action="{% url "crud:delete" student.pk %}" method='POST'>
+        {% csrf_token %}
         <button onclick="alert('{{ student.name }} 학생 정보를 삭제하시겠습니까?')">학생 정보 삭제하기</button>
-    </a>
+    </form>
 </div>
 {% endblock content %}
 

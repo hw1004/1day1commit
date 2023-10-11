@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 # redirect는 강제적으로 특정 페이지로 넘어가게 하는 것
+from django.views.decorators.http import require_safe, require_POST, require_http_methods
 
 from .models import Article
 from .forms import ArticleForm
@@ -11,6 +12,7 @@ from .forms import ArticleForm
         # 'form': form,
     # })   # 비어있음
 
+@require_http_methods(['GET', 'POST'])
 def create(request):   # 저장하는 과정
     if request.method == 'GET':
         form = ArticleForm()   # input tag 대신 생성
@@ -44,6 +46,7 @@ def create(request):   # 저장하는 과정
 
     
 # Read
+@require_safe
 def index(request):
     # 모든 게시글 조회
     articles = Article.objects.all()
@@ -52,8 +55,10 @@ def index(request):
         'articles': articles,
     })
 
+@require_safe
 def detail(request, pk):
-    article = Article.objects.get(pk=pk)
+    # article = Article.objects.get(pk=pk)
+    article = get_object_or_404(Article, pk=pk)  # (Article, 검색 조건)
     return render(request, 'board/detail.html', {
         'article': article,
     })
@@ -68,8 +73,10 @@ def detail(request, pk):
         # 'form': form,
     # })
 
+@require_http_methods(['GET', 'POST'])
 def update(request, pk):
-    article = Article.objects.get(pk=pk)
+    # article = Article.objects.get(pk=pk)
+    article = get_object_or_404(Article, pk=pk)
     
     if request.method == 'GET':
         form = ArticleForm(instance=article)
@@ -100,9 +107,14 @@ def update(request, pk):
     #return redirect('board:detail', article.pk)
 
 # Delete
+# if 대신 def delete 위에 @require_POST를 붙여도 된다.
+@require_POST
 def delete(request, pk):
-    article = Article.objects.get(pk=pk)
+    # article = Article.objects.get(pk=pk)
+
+    article = get_object_or_404(Article, pk=pk)
     article.delete()
+
     return redirect('board:index')
 
 

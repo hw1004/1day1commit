@@ -14,9 +14,10 @@
 </div>
 <div>
     <!-- /board/delete/{{ article.pk }} -->
-    <a href="{% url 'board:delete' article.pk %}">
+    <form action="{% url 'board:delete' article.pk %}" method="POST">
+        {% csrf_token %}
         <button onclick="return confirm('진짜 삭제하시겠습니까?')">삭제</button>
-    </a>
+    </form>
 </div>
 
 {% endblock content %}
