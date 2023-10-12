@@ -28,6 +28,7 @@ python manage.py startapp first_app
 # settings.py > installed_app 부분에 first_app을 입력한다.(출생신고)
 ```
 
+
 3. views.py
 - `HttpResponse 또는 render`을 사용해서 function view를 만든다. (함수 생성)
 
