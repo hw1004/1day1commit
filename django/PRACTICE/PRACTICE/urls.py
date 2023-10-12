@@ -21,6 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('univ/', include('crud.urls')),  # school에서 univ로 바뀌어도 작동하게끔 app_name:name 형식을 사용한다.
-
-    path('accounts/', include('accounts.urls'))
+    path('accounts/', include('accounts.urls'))   # accounts
 ]
