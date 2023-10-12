@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <form method="POST">
     {% csrf_token %}
-
     <table>
         {{ form.as_table }}
     </table>
-    
 
     <div>
-        <button>제출</button>
+        <button>회원가입</button>
     </div>
 </form>
+
 {% endblock content %}
+
 
 

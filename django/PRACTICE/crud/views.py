@@ -20,7 +20,9 @@ def create(request):
         form = StudentForm(data=request.POST)
         
         if form.is_valid():
-            student = form.save()
+            student = form.save(commit=False)
+            student.user = request.user
+            student.save()
             return redirect('crud:detail', student.pk)
 
     return render(request, 'crud/form.html', {

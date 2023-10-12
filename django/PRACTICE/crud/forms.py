@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student
+from .models import Student, Comment
 
 class StudentForm(forms.ModelForm):
     # 상수(값이 초기화/할당 이후 절대 변하면 안된다는 뜻)
@@ -23,9 +23,12 @@ class StudentForm(forms.ModelForm):
     
     class Meta:
         model = Student
+        exclude = ('user',)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
         fields = '__all__'
-
-
 
 # PRACTICE > crud app 에서 ModelForm 사용하기
  # crud/forms.py 생성

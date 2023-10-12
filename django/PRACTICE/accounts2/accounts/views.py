@@ -9,14 +9,14 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 def signup(request):
     # 요청 보낸 사용자가 로그인 상태라면 돌려보내기
     if request.user.is_authenticated:
-        return redirect('crud:index')
+        return redirect('board:index')
     
     if request.method == 'POST':
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect('crud:index')
+            return redirect('board:index')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/signup.html', {
@@ -26,7 +26,7 @@ def signup(request):
 @require_http_methods(['GET', 'POST'])
 def login(request):
     if request.user.is_authenticated:
-        return redirect('crud:index')  # login 했으면 login 페이지에 접근 못하게
+        return redirect('board:index')  # login 했으면 login 페이지에 접근 못하게
     if request.method == 'POST':
         form = AuthenticationForm(request,data=request.POST)
         if form.is_valid():
@@ -34,7 +34,7 @@ def login(request):
             # 쿠키(팔찌 세팅)
             auth_login(request, user)
             print(user)
-            return redirect('crud:index')
+            return redirect('board:index')
         
     else:
         form = AuthenticationForm()
@@ -46,7 +46,7 @@ def login(request):
 
 def logout(request):
     if not request.user.is_authenticated:
-        return redirect('crud:index')
+        return redirect('board:index')
     
     auth_logout(request)
-    return redirect('crud:index')
+    return redirect('board:index')

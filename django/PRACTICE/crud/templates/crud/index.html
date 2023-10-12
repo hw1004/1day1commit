@@ -10,7 +10,7 @@
         <!-- '/school/{{ student.pk }}/' -->
         <a href="{% url "crud:detail" student.pk %}">
             {{ student.name }}
-        </a>
+        </a>작성자: {{ student.user}}
     </li>
     {% endfor %}
 </ul>

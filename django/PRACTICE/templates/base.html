@@ -14,10 +14,23 @@
                 <!-- '/school/' -->
                 <a href="{% url "crud:index" %}">학생 목록</a>
             </li>
+
+            {% if not request.user.is_authenticated %}
             <li>
-                <!-- '/school/new/' -->
-                <a href="{% url "crud:create" %}">학생 정보 입력</a>
+                <a href="{% url "accounts:login" %}">Login</a>
             </li>
+            <li>
+                <a href="{% url "accounts:signup" %}">Signup</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url "crud:create" %}">학생정보 입력</a>
+            </li>
+            <li>
+                <a href="{% url "accounts:logout" %}">Logout</a>
+            </li>
+            {% endif %}
+
         </ul>
     </nav>
     {% block content %}
