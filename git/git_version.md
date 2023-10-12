@@ -50,3 +50,18 @@
 |git remote|존재하는 원격저장소 확인|
 |git remote remove|원격저장소 이름 제거 (기존에 연결된 원격 저장소 제거할 때)|`git remote remove origin`|
 
+
+### git init
+`git init`으로 git 저장소를 생성할 수 있다. 
+TIL 폴더에서 `git init`을 실행하면 TIL에 git 저장소 .git이 생긴다.
+- TIL이 git으로 관리되는 git 저장소라면 TIL의 하위 폴더에 또 다른 git 저장소가 생기면 안된다.
+- 만약, git 저장소 안에 또 다른 git 저장소를 잘못 생성하였으면...
+```
+ls -a   # .git 존재 여부를 확인한다.
+
+# TIL의 하위 폴더에 .git이 존재할 때
+rm -rf .git
+
+# submodule error 있을 때 submodule 지우는 방법
+git rm --cached django/03_REL/
+```
