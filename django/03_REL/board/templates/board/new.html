@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- /board/create/ -->
+<form action="{% url 'board:create' %}" method="POST">
+    {% csrf_token %}
+
+
+    {{ form.as_p }}
+    <!--
+    <div>
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title">
+    </div>
+    <div>
+        <label for="content">내용</label>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+    </div>
+    -->
+    <div>
+        <button>게시</button>
+    </div>
+
+</form>
+
+{% endblock content %}
+
+

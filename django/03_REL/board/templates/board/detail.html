@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ article.title }}</h1>
+<h2>{{ article.user }}</h2>
+<p>{{ article.content }}</p>
+
+<div>
+    <!-- /board/edit/{{ article.pk }} -->
+    <a href="{% url 'board:update' article.pk %}">
+        <button>수정</button>
+    </a>
+</div>
+<div>
+    <!-- /board/delete/{{ article.pk }} -->
+    <form action="{% url 'board:delete' article.pk %}" method="POST">
+        {% csrf_token %}
+        <button onclick="return confirm('진짜 삭제하시겠습니까?')">삭제</button>
+    </form>
+</div>
+
+{% endblock content %}
+
+
