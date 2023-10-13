@@ -9,6 +9,7 @@
 <p>전공: {{ student.major }}</p>
 <p>비고: {{ student.description }}</p>
 
+{% if request.user == student.user %}
 <div>
     <!-- "/school/{{ student.pk }}/edit" -->
     <a href="{% url "crud:update" student.pk %}">
@@ -22,6 +23,12 @@
         <button onclick="alert('{{ student.name }} 학생 정보를 삭제하시겠습니까?')">학생 정보 삭제하기</button>
     </form>
 </div>
+{% endif %}
+
+<hr>
+
+{% include "crud/detail_reply.html" %}
+
 {% endblock content %}
 
 

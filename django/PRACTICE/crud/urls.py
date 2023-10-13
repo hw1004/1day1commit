@@ -13,5 +13,7 @@ urlpatterns = [
     # path('<int:pk>/edit/', views.edit, name='edit'),
     path('<int:pk>/update/', views.update, name='update'),
     path('<int:pk>/delete/', views.delete, name='delete'),
+    path('<int:pk>/reply/create/', views.reply_create, name='reply_create'),
+    path('<int:pk>/reply/<int:reply_pk>/delete/', views.reply_delete, name='reply_delete'),
 ]
 

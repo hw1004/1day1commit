@@ -1,0 +1,24 @@
+{% if request.user.is_authenticated %}
+<form action="{% url "crud:reply_create" student.pk %}" method="POST">
+  {% csrf_token %}
+  {{ form_reply.as_p }}
+  <button>댓글작성</button>
+</form>
+{% endif %}
+
+<div>
+  <ul>
+  {% for reply in student.reply_set.all %}
+    <li>
+      {{ reply.user }}  {{ reply.content }}  {{ reply.rank }}
+
+      {% if request.user == reply.user %}
+      <form action="{% url "crud:reply_delete" student.pk reply.pk %}" method="POST" style="display: inline-block;">
+        {% csrf_token %}
+        <button onclick="return confirm('댓글 삭제?')">삭제</button>
+      </form>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</div>

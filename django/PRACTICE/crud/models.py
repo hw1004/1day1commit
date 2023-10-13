@@ -15,11 +15,9 @@ class Student(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-class Comment(models.Model):
+class Reply(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     content = models.CharField(max_length=200)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
+    rank = models.IntegerField()
     
