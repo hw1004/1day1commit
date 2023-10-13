@@ -22,8 +22,8 @@ class Article(models.Model):
 # 3. id, title(VARCHAR 200), content(TextField)
 
 class Comment(models.Model):
-    content = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friends')
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)

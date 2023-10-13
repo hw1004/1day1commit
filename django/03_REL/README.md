@@ -1,3 +1,5 @@
+# Django 내장 회원 관리
+
 1. get_object_or_404
 2. 함수마다 요청 메서드 데코레이터 붙이기 (require_safe, require_POST, require_http_methods)
 3. delete 요청도 DB에 변화를 주기때문에 POST 로 바꾸기

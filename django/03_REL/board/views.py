@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # redirect는 강제적으로 특정 페이지로 넘어가게 하는 것
 from django.views.decorators.http import require_safe, require_POST, require_http_methods
+from django.contrib.auth.decorators import login_required
 
-from .models import Article
-from .forms import ArticleForm
+from .models import Article, Comment
+from .forms import ArticleForm, CommentForm
 
 # Create
 # def new(request):
@@ -12,6 +13,7 @@ from .forms import ArticleForm
         # 'form': form,
     # })   # 비어있음
 
+@login_required
 @require_http_methods(['GET', 'POST'])
 def create(request):   # 저장하는 과정
     if request.method == 'GET':
@@ -58,11 +60,18 @@ def index(request):
     })
 
 @require_safe
+@login_required
 def detail(request, pk):
     # article = Article.objects.get(pk=pk)
     article = get_object_or_404(Article, pk=pk)  # (Article, 검색 조건)
+    form_comment = CommentForm()
+    # comments = Comment.objects.all()
+    # comments = article.comment_set_all()
+    
     return render(request, 'board/detail.html', {
         'article': article,
+        'form_comment': form_comment,
+        # 'comments': comments,
     })
 
 # Update
@@ -75,10 +84,14 @@ def detail(request, pk):
         # 'form': form,
     # })
 
+@login_required
 @require_http_methods(['GET', 'POST'])
 def update(request, pk):
     # article = Article.objects.get(pk=pk)
     article = get_object_or_404(Article, pk=pk)
+    
+    if request.user != article.user:
+        return redirect('board:detail', article.pk)
     
     if request.method == 'GET':
         form = ArticleForm(instance=article)
@@ -111,15 +124,44 @@ def update(request, pk):
 # Delete
 # if 대신 def delete 위에 @require_POST를 붙여도 된다.
 @require_POST
+@login_required
 def delete(request, pk):
     # article = Article.objects.get(pk=pk)
 
     article = get_object_or_404(Article, pk=pk)
+    
+    if request.user != article.user:
+        return redirect('board:detail', article.pk)
+    
     article.delete()
 
     return redirect('board:index')
 
+@require_POST
+@login_required
+def create_comment(request, pk):
+    form_comment = CommentForm(data=request.POST)
+    article = get_object_or_404(Article, pk=pk)
+    
+    if form_comment.is_valid():
+        comment = form_comment.save(commit=False) # user, article 정보 없음
+        comment.user = request.user
+        comment.article = article
+        comment.save()
+        return redirect('board:detail', article.pk)  # 그냥 pk 사용해도됨
 
+@require_POST
+@login_required
+def delete_comment(request, pk, comment_pk):
+    article = get_object_or_404(Article, pk=pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    
+    if request.user != comment.user:
+        return redirect('board:detail', article.pk)
+    
+    comment.delete()
+    return redirect('board:detail', article.pk)
+    
 # /board/new/ => new 함수 실행 => new.html return (사용자 글을 쓸 곳 - 내용 비워두기)
 # /board/create/ => create 함수 실행 => 내용 비워놓기
 # /board/ => index 함수 실행 => index.html return (글 목록)

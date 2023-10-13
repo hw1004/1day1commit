@@ -6,6 +6,8 @@
 <h2>{{ article.user }}</h2>
 <p>{{ article.content }}</p>
 
+<!-- 완전히 막으려면 views.py -->
+{% if article.user == request.user %}   
 <div>
     <!-- /board/edit/{{ article.pk }} -->
     <a href="{% url 'board:update' article.pk %}">
@@ -19,6 +21,12 @@
         <button onclick="return confirm('진짜 삭제하시겠습니까?')">삭제</button>
     </form>
 </div>
+{% endif %}
+
+<hr>
+
+<!-- comment 관련된 것 detail_comment.html로 옮기기 -->
+{% include "board/detail_comment.html" %}
 
 {% endblock content %}
 

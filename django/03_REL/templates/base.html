@@ -7,30 +7,7 @@
 </head>
 <body>
     <h1>{{ request.user }}</h1>
-    <nav>
-        <ul>
-            <li>
-                <a href="{% url "board:index" %}">Home</a>
-            </li>
-            <!-- 로그인 안한 사람의 UI-->
-            {% if not request.user.is_authenticated %}
-            <li>
-                <a href="{% url "accounts:login" %}">Login</a>
-            </li>
-            <li>
-                <a href="{% url "accounts:signup" %}">Signup</a>
-            </li>
-            <!-- 로그인 한 사람의 UI -->
-            {% else %}
-            <li>
-                <a href="{% url "board:create" %}">New</a>
-            </li>
-            <li>
-                <a href="{% url "accounts:logout" %}">Logout</a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
+    {% include "base_nav.html" %}
     {% block content %}
     
     {% endblock content %}
