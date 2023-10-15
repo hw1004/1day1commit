@@ -16,6 +16,10 @@ ___
 - [DFS & BFS](https://github.com/hw1004/TIL/blob/main/algorithms/DFS_BFS.md)
 - [Disjoint set algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/disjoint_set_algorithms.md)
 - [Graph Theory](https://github.com/hw1004/TIL/blob/main/algorithms/optimized_algorithms.md)
+- [Prime number algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/prime_number_algorithm.md)
+- [Standard Library](https://github.com/hw1004/TIL/blob/main/algorithms/standard_library.md)
+- [Dinamic Programming](https://github.com/hw1004/TIL/blob/main/algorithms/dimanic_programming.md)
+- [Other Algorithms...](https://github.com/hw1004/TIL/blob/main/algorithms/etc_algorithms.md)
 
 ### Python
 - [기초 문법 및 데이터 타입](https://github.com/hw1004/1day1commit/blob/main/python/basic_syntax_and_datatype.md)
