@@ -38,6 +38,7 @@ python manage.py startapp first_app
 - `render(request, 'lotto.html', context)`에서 context를 마지막에 붙였다. return 이전에 context를 dictioanry로 지정해주면 지정된 값은 lotto.html 파일에서 사용될 수 있다. 따라서 코드로 계산된 값들이나 텍스트 등을 html로 끌고 와서 사용할 수 있게 된다.
 
 5. urls.py
+
 |urls.py|description|
 |---|---|
 |intro의 urls.py|`include`를 이용해 first_app과 추후의 다른 second_app에 포함되는 function view를 분권화함. first와 second의 views를 명확히 구분시키기 위함.|
@@ -47,7 +48,7 @@ python manage.py startapp first_app
 - first_app의 urls.py 파일에 있는 views를 불러온다.
 - first_app의 urls.py 파일에서 views는 views.py로부터 불러온다.
 
-5. runserver
+1. runserver
 `python manage.py runserver`을 실행하고 고정값 http://127.0.0.1:8000/ 뒤에 customizing 해주면 원하는 function view의 html 파일을 웹으로 확인할 수 있다.
 - (Ex) http://127.0.0.1:8000/first_app/lotto/
 
