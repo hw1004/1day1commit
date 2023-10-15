@@ -12,7 +12,7 @@ ___
 - [Data structure](https://github.com/hw1004/TIL/blob/main/algorithms/data_structure.md)
 - [DFS & BFS](https://github.com/hw1004/TIL/blob/main/algorithms/DFS_BFS.md)
 - [Disjoint set algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/disjoint_set_algorithms.md)
-- [Graph Theory](https://github.com/hw1004/TIL/blob/main/algorithms/optimized_algorithms.md)
+- [Graph Theory](https://github.com/hw1004/TIL/blob/main/algorithms/graph_theory.md)
 - [Prime number algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/prime_number_algorithm.md)
 - [Standard Library](https://github.com/hw1004/TIL/blob/main/algorithms/standard_library.md)
 - [Dinamic Programming](https://github.com/hw1004/TIL/blob/main/algorithms/dimanic_programming.md)
@@ -36,8 +36,8 @@ ___
 
 
 ### Web
-- #### [HTML](https://github.com/hw1004/1day1commit/tree/main/web/HTML)
-- #### [CSS](https://github.com/hw1004/1day1commit/tree/main/web/CSS)
+- #### [HTML](https://github.com/hw1004/TIL/blob/main/web/HTML/html_basic.md)
+- #### [CSS](https://github.com/hw1004/TIL/blob/main/web/CSS/css_basic.md)
 - #### [Bootstrap](https://github.com/hw1004/1day1commit/tree/main/web/Bootstrap)
 - #### [Django](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
 
