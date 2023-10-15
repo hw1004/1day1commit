@@ -1,10 +1,7 @@
-# TIL(Today I Learned)
+# TIL
+> Today I Learned
 
-## Format
-- 모든 파일은 markdown 형태로 작성한다.
-- 모든 commit은 하루가 지나가기 전에 완료한다.
-- 모든 폴더와 파일명은 영어로 작성한다.
-- 양이 많지 않더라도 꾸준히 작성하는 것을 목표로 한다.
+This repository is a collection of write-ups on things I learn day to day. I aim to commit "consistently" every day.
 
 ___
 ### CLI
