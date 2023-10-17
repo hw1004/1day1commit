@@ -68,10 +68,14 @@ def detail(request, pk):
     # comments = Comment.objects.all()
     # comments = article.comment_set_all()
     
+    # article에 request.user가 좋아요를 눌렀는가?
+    is_like = article.like_users.filter(pk=request.user.pk).exists()
+    
     return render(request, 'board/detail.html', {
         'article': article,
         'form_comment': form_comment,
         # 'comments': comments,
+        'is_lile': is_like,
     })
 
 # Update
@@ -170,9 +174,15 @@ def like(request, pk):
     article = get_object_or_404(Article, pk=pk)
     user = request.user
     
-    article.like_users.add(user)
+    # 만약 요청을 보낸 사용자가 기존에 좋아요를 누르지 않았다면,
+    # if user in article.like_users.all():    # python
+    if article.like_users.filter(pk=user.pk).exists():  # Database 시간 복잡도가 줄어듦   
+        article.like_users.remove(user)  # 좋아요 취소
     # user.like_articles.add(article)
-    # like_count = article.like_users.all().count()
+    # 좋아요를 눌렀었다면
+    else:
+        article.like_users.add(user)   # 좋아요 추가
+        
     
     return redirect('board:detail', article.pk)
     

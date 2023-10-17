@@ -9,7 +9,11 @@
 <div>
     <form action="{% url "board:like" article.pk %}" method="POST">
         {% csrf_token %}
+        {% if is_like %}
+        <button>좋아요취소({{ article.like_users.count }})</button>
+        {% else %}
         <button>좋아요({{ article.like_users.count }})</button>
+        {% endif %}
     </form>
 </div>
 
