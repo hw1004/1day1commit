@@ -19,9 +19,8 @@ class ArticleForm(forms.ModelForm):
    
     class Meta:
         model = Article
-        # fields = ('title', 'content')
-        exclude = ('user', )  # user만 빼고
-        # fields = (title, )   # title에 대한 입력 화면만 나옴
+        fields = ('title', 'content', )
+        # exclude = ('user', )
 
 class CommentForm(forms.ModelForm):
     

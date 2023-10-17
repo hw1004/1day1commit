@@ -161,6 +161,20 @@ def delete_comment(request, pk, comment_pk):
     
     comment.delete()
     return redirect('board:detail', article.pk)
+
+@login_required
+@require_POST
+def like(request, pk):
+    # 모델링 => 뷰함수 => UI/ 시나리오
+    # detail.html에 버튼을 만든다. => 여기 함수에 진입한다. => 다시 detail로 redirect
+    article = get_object_or_404(Article, pk=pk)
+    user = request.user
+    
+    article.like_users.add(user)
+    # user.like_articles.add(article)
+    # like_count = article.like_users.all().count()
+    
+    return redirect('board:detail', article.pk)
     
 # /board/new/ => new 함수 실행 => new.html return (사용자 글을 쓸 곳 - 내용 비워두기)
 # /board/create/ => create 함수 실행 => 내용 비워놓기

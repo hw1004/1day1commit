@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django_extensions',
     
     'board',
-    'accounts'
+    'accounts',
+    'many_to_many',
 ]
 
 MIDDLEWARE = [

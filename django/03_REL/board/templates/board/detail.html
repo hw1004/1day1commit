@@ -6,6 +6,13 @@
 <h2>{{ article.user }}</h2>
 <p>{{ article.content }}</p>
 
+<div>
+    <form action="{% url "board:like" article.pk %}" method="POST">
+        {% csrf_token %}
+        <button>좋아요({{ article.like_users.count }})</button>
+    </form>
+</div>
+
 <!-- 완전히 막으려면 views.py -->
 {% if article.user == request.user %}   
 <div>
