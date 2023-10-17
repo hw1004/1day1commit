@@ -40,7 +40,7 @@ ___
 - #### [CSS](https://github.com/hw1004/TIL/blob/main/web/CSS/css_basic.md)
 - #### [Bootstrap](https://github.com/hw1004/1day1commit/tree/main/web/Bootstrap)
 - #### Django
-  - [Django projectt](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
+  - [Django project](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
   - [model and database](https://github.com/hw1004/TIL/blob/main/django/model.md)
 
 ### Database
