@@ -39,7 +39,10 @@ ___
 - #### [HTML](https://github.com/hw1004/TIL/blob/main/web/HTML/html_basic.md)
 - #### [CSS](https://github.com/hw1004/TIL/blob/main/web/CSS/css_basic.md)
 - #### [Bootstrap](https://github.com/hw1004/1day1commit/tree/main/web/Bootstrap)
-- #### [Django](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
+- #### Django
+  - [Django projectt](https://github.com/hw1004/TIL/blob/main/django/django_basic.md)
+  - [model and database](https://github.com/hw1004/TIL/blob/main/django/model.md)
 
 ### Database
-- [MySQL](https://github.com/hw1004/TIL/tree/main/DB)
+- [MySQL Basic](https://github.com/hw1004/TIL/blob/main/DB/MySQL.md)
+- [Entity Relationship Diagram(ERD)](https://github.com/hw1004/TIL/blob/main/DB/ERD.md)

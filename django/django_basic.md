@@ -30,7 +30,23 @@ python manage.py startapp first_app
 
 
 3. views.py
+- `from django.shortcuts import render, redirect, get_object_or_404)`
+- `from django.views.decorators.http`로부터 `require_safe, require_http_methods(), require)POST`를 import할 수 있다.
+
+|method|description|
+|---|---|
+|`require_http_methods(['POST', 'GET'])`|view 함수가 특정한 method만 허용하도록 함|
+|`require_POST`|POST 방식의 request만 처리|
+|`require_safe`|GET, HEAD method 방식만 처리|
+
 - `HttpResponse 또는 render`을 사용해서 function view를 만든다. (함수 생성)
+- `redirect`를 이용하여 특정한 페이지(html)로 이동할 수 있게 만들 수 있다.
+- 각 함수 위에 `@require_safe` 형식으로 표시
+
+### 로그인을 해야만 볼 수 있는 조건 생성
+- `from django.contrib.auth.decorators import login_required`
+- `views.py`의 함수들 위에 `@login_required`를 표시하면 특정 함수의 기능/페이지가 login이 된 상태에서만 조회 가능하게 설정됨
+
 
 4. tempaltes 생성과 html 파일 생성
 - views.py 안의 함수들은 개개인의 html 파일을 templates이라는 폴더를 만들어 생성해야 한다.
@@ -48,7 +64,7 @@ python manage.py startapp first_app
 - first_app의 urls.py 파일에 있는 views를 불러온다.
 - first_app의 urls.py 파일에서 views는 views.py로부터 불러온다.
 
-1. runserver
+6. runserver
 `python manage.py runserver`을 실행하고 고정값 http://127.0.0.1:8000/ 뒤에 customizing 해주면 원하는 function view의 html 파일을 웹으로 확인할 수 있다.
 - (Ex) http://127.0.0.1:8000/first_app/lotto/
 
@@ -108,6 +124,57 @@ def hello(request, name):
 |`request.GET['key']`|위에서 name을 지정한 input tag의 사용법에 따르면 입력값은 dictionary 형태로 지정된다. views.py 파일에서 입력받은 value값을 이용하기 위해서는 request.GET['key명']을 통해 value의 값을 받아야 한다. 지정한 value 값을 context로 지정하면 목적지인 pong.html에서도 이 입력값들을 사용할 수 있다.|
 
 - input의 타입은 html의 input type attribute value이며, text, color, date, password, submit 등 다양하다.
+
+
+## models.py
+> 데이터에 대한 하나의 정보 소스
+> 일반적으로 `models.py`에 생성되는 model class들은 하나의 DB 테이블에 mapping된다.
+
+```
+from django.contrib.auth import get_user_model()
+
+User = get_user_model()
+
+class Student(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    
+```
+
+|models.py|description|비고|
+|---|---|---|
+|`get_user_model()`|현재 활성화된 User model 반환/ 그렇지 않은 경우 User(default) model 반환/ 객체 인스턴스를 리턴한다.|항상 유효한 사용자 모델 객체를 리턴한다는 보장 X|
+|`settings.AUTH_USER_MODEL`|외래키 모델을 전달할 때 문자열로 전달함. |항상 올바른 사용자 모델을 얻을 수 있음|
+|`on_delete=models.CASCADE`|상위 필드가 삭제될 때 하위 필드도 저절로 삭제되게 하는 것|
+|`models.ForeignKey`|테이블과 테이블을 연결하기 위해 사용되는 외래키로, 테이블의 필드 중에서 다른 테이블의 행과 식별할 수 있는 키이다.|
+
+### Timestamp 생성시간, 수정시간 자동 생성
+```
+created_at = models.DateTimeField(auto_now_add=True, null=True)
+updated_at = models.DateTimeField(auto_now=True)
+```
+
+
+## forms.py
+```
+from django import forms
+from .models import Student
+```
+- django에서 forms를 import하고 models.py의 모델을 불러온다.
+
+```
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ['name', 'age']
+```
+- model form을 이용하여 모델을 가져오고, `field` 또는 `exclude`를 통해 필드의 값을 재정의하여 불러올 수 있다.
+- `views.py`에서 `form = StudentForm`으로 지정한 form을 rendering 해주어 context로 보내면 form을 사용하고자하는 html 파일로 context를 보낸다.
+-html 파일에서는 `{{ form }}`으로 불러낼 수 있는데, 더 깔끔하게 `{{ form.as_p }}` 또는 `<table>{{ form.as_table }}</table>`로 form을 불러낼 수 있다.
+
+### views.py에서 ModelForm을 호출하였을 때 form의 유효성 확인
+- `form = StudentForm()`과 같이 빈 form을 받거나, `form = StudentForm(data=request.POST)`와 같이 
 
 ## Crawling
 > JSON은 데이터 형식이며 json 형식의 데이터에서 필요한 데이터를 crawling 해올 수 있다.
