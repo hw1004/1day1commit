@@ -139,3 +139,109 @@ SELECT INSERT('Hello justin', 6, 3, ' There');
   - `%`: 0~N 개 뭐라도 올 수 있음
   - `_`: 정확히 한 글자만 올 수 있음
   - `SELECT * FROM books WHERE author_fname LIKE '%da%'`
+
+## 집계 함수 (Aggregated Function)
+1. **COUNT**
+> 개수를 세는 함수
+
+- `SELECT count(title) FROM books WHERE title LIKE '%the%'`: the를 포함하는 title의 개수 count
+- 집계함수와 집계 함수가 아닌 함수는 GROUP BY 없이 동시에 조회 불가
+
+2. **GROUP BY**
+> 특정 column을 기준으로 같은 값을 가지는 column 값들로 Group을 만드는 것
+
+- `SELECT author_lname, COUNT(*) FROM books GROUP BY author_lname, author_fname;`: author_lname과 author_fname이 같은 것끼리 group을 지어서 author_lname과 특정 full name을 가지는 책의 개수 count
+- 가상의 column (CONCAT)에서도 가능하다.
+
+3. **MIN MAX**
+> 최대, 최솟값
+
+- `SELECT MIN(released_year) AS '최고'`: 가장 오래된 책 반환
+- `SELECT MAX(released_year) AS '최소'`: 가장 최근의 책 반환
+
+4. **SUBQUERY**
+> WHERE절에 SELECT문이 들어가는 서브쿼리문으로 aggregated 함수를 사용할 때 유용하게 사용된다.
+
+- `SELECT title, pages FROM books WHERE pages = (SELECT MAX(pages) FROM books);`: WHERE 구문에 SELECT문이 들어가는 subquery문을 사용하여 전체 데이터에서 가장 페이지 수가 많은 책의 제목과 페이지 수를 함께 반환할 수 있다.
+
+5. **SUM**
+> 특정 column듸 값들의 전체 합계
+
+- `SELECT SUM(pages), SUM(stock_quantity) FROM books`: 모든 책의 페이지수와 재고 수의 합계를 반환한다.
+
+6. **AVG**
+> 특정 column의 값들에 대한 평균
+
+- `SELECT AVG(pages) FROM books;`: 전체 책들의 평균 페이지 수 반환
+
+## 논리 연산자 Operators
+|operators|description|
+|---|---|
+|`+`|더하기|
+|`-`|빼기|
+|`*`|곱하기|
+|`/`|나누기|
+|`%`|나머지|
+|`DIV`|몫|
+|`POW(a, b)`|a의 b제곱|
+|`IS NULL`|WHERE title IS NULL 하면 title이 NULL 이 아닌 값|
+|`!=`|여집합|
+|`>`, `<`|GT, LT ~보다 크다/~보다 작다|
+|`>=`, `<=`|GTE, LTE ~보다 크거나 같다/~보다 작거나 같다|
+|`AND`|여러개의 조건을 다 만족시켜야 할 때|
+|`OR`|조건들 중 하나만 성립하여도 될 때|
+|`BETWEEN A AND B`|특정 칼럼의 값이 특정한 범위 내에 존재해야 할 때|
+|`NOT BETWEEN A AND B`|여집합|
+|`IN`|여러개의 보기 중에 특정 column의 값이 존재하면 사용|
+
+### CASE
+```
+SELECT title, stock_quantity, 
+	CASE
+		  WHEN stock_quantity <= 40 THEN '*'
+        WHEN stock_quantity <= 70 THEN '**'
+        WHEN stock_quantity <= 100 THEN '***'
+        WHEN stock_quantity <= 140 THEN '****'
+        ELSE '*****'
+	END AS stars
+FROM books
+ORDER BY stars;
+```
+
+## 제약조건 (Constraints)
+### UNIQUE
+> table을 생성할 때 생성되는 COLUMN에 UNIQUE 조건이 있으면 중복을 허용하지 않는다.
+
+```
+CREATE TABLE contacts (
+	name VARCHAR(100) NOT NULL,
+	phone VARCHAR(15) NOT NULL UNIQUE
+);
+```
+
+### CHECK
+> 제약조건을 생성할 때 확인(체크) 해야할 조건식을 작성한다.
+> 여러개의 column에 대한 제약조건이 걸릴 시 두번째 코드와 같이 나타날 수 있다.
+
+```
+CREATE TABLE palindrome2 (
+  word VARCHAR(100) NOT NULL,
+  CONSTRAINT word_must_be_palindrome CHECK(REVERSE(word) = word)
+);
+```
+```
+CREATE TABLE companies (
+	name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    CONSTRAINT name_and_address_cannot_be_same UNIQUE (name, address)
+);
+```
+
+## 수정 ALTER
+1. `ALTER TABLE companies ADD COLUMN phone VARCHAR(20);`: COLUMN 추가
+2. `ALTER TABLE companies DROP COLUMN phone;`: COLUMN 삭제
+3. `ALTER TABLE companies RENAME COLUMN name TO company_name;`: COLUMN명 변경
+4. `ALTER TABLE companies MODIFY company_name VARCHAR(100) DEFAULT '???';`: default 값을 추가로 주거나 데이터 타입의 범위 같은 것을 수정할 때
+5. `ALTER TABLE companies CHANGE company_name name VARCHAR(255) DEFAULT '???' NOT NULL;`: COLUMN명 변경하고 DEFAULT나 NULL 조건 추가하거나 데이터 타입의 범위 같은 것 동시에 수정할 때
+6. `ALTER TABLE companies ADD CONSTRAINT positive_buy_price CHECK (buy_price >= 0);`: 제약조건 추가할 때
+7. `ALTER TABLE companies DROP CONSTRAINT positive_buy_price;`: 테이블에 부여된 제약조건을 취소할 때
