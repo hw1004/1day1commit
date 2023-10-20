@@ -70,6 +70,9 @@ else:
 - `data.drop([0], inplace=True)`: pandas의 함수이며 0번째 행을 삭제해준다.
 - `data.set_index('자치구별', inplace=True)`: 기본적으로 행 인덱스로 id값이 주어지는데, 이를 특정 컬럼(보통 첫번째 열)이 행 인덱스의 역할을 하게끔 설정하는 것이다.(시각화에 효율적)
 
+## 정제한 데이터를 csv파일로 저장하기
+- `data_result.to_csv('./data/datafin.csv')`: 저장할 디렉토리 위치와 csv 파일명을 지정해준다.
+
 
 ## 정규식 패키지
 `import re`
@@ -112,6 +115,36 @@ plt.scatter(data.인구수, data.소계, s=50)  # s는 점의 크기
 plt.xlabel('인구수')
 plt.ylabel('구별 cctv 수')
 plt.grid()
+plt.show()
+```
+- 산점도
+```
+plt.figure(figsize=(10, 10))   # 그래프의 전체적인 설정
+plt.scatter(cctv_res['인구수'], cctv_res['소계'], s=50)
+plt.xlabel('인구수')
+plt.ylabel('구별 cctv 수')
+plt.grid()
+plt.show()   # 주피터노트북에서는 코드 상관없이 실행됨
+# plt.show(): 코드 전체에 대해 한번에 인터프리터 적용시 그래프 출력시 반드시 필요!
+```
+- 직선방정식을 그래프에 표현했을 때 오차가 큰 상위 10개의 데이터 표시하기
+```
+plt.figure(figsize=(8, 8))   # 그래프의 전체적인 설정
+plt.scatter(cctv_res['인구수'], cctv_res['소계'], s=50,
+           label='cctv vs pop', c=cctv_res['오차'])  # c는 색깔을 다르게 표시해줄 데이터명!
+plt.plot(xs,ys, 
+        ls = 'dashed', lw=3, color='g',
+        label=f'{poly_fit[1]:.2f} + {poly_fit[0]:.4f}x')
+
+for n in range(10):  # 오차가 큰 상위 10개 자치구명 표시
+    plt.text(df_sort['인구수'][n]*1.02, df_sort['소계'][n]*0.98, df_sort.index[n], fontsize=10)
+    
+plt.legend(loc='upper left')   # label명들을 하나의 box에 정리해둘 수 있는데, 그 때 box의 위치를 설정
+plt.xlabel('인구수')
+plt.ylabel('구별 cctv 수')
+plt.colorbar(label='오차')  # 그래프 옆에 colorbar 표시
+plt.grid()
+plt.show()
 ```
 
 #### 산점도와 회귀선을 통해 분포를 보여주는 분산그래프
@@ -122,3 +155,9 @@ import seaborn as sns
 ```
 
 - `sns.lmplot(x='인구수', y='소계', data=data_result)`: 회귀선이 포함된 분산그래프 반환
+
+### 두 column을 대표하는 직선 그리기(numpy)
+- `np.polyfit(df.<column명>, df.<column2명>, 차수)`: 차수에 1을 넣으면 두 column의 값들의 관계를 나타내는 일차방정식의 절편과 기울기를 반환한다.
+- `np.poly1d(polyfit으로 구한 절편과 기울기 array)`: 위의 코드를 실행하고 저장한 후 그 값을 poly1d에 넣으면 직선 방정식 자체를 생성한다.
+- `np.linspace(df.인구수.min(), df.인구수.max())`: 인구수의 최소와 최대값 사이에 임의의 인구수 50개를 생성한다.
+- `np.abs(cctv_res['적정 cctv 수']-cctv_res['소계'])`: 절대값 반환
