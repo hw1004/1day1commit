@@ -9,9 +9,11 @@ ___
 
 ### Data Science
 #### Machine Learning
-- [Python data analysis basic(Numpy, Pandas, Matplotlib)]()
-- [Machine Learning Basic]()
-- 
+- [Python data analysis basic(Numpy, Pandas, Matplotlib)](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/python/python_analysis_packages.md)
+- [Machine Learning Basic](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/machine_learning_basic.md)
+- [K-Nearest Neighbor](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/01_KNN)
+- [Data Preprocessing](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/02_Data_preprocessing)
+- [Regression](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/03_Regression)
 
 ### Algorithms
 - [Sort algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/sort_algorithms.md)
