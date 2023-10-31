@@ -7,6 +7,8 @@
 - Pandas에서 원-핫 인코딩을 쉽게 지원하는 API로는 **`get_dummies()`** 가 있다.
   - `pd.get_dummies(df)`
   - 원핫인코딩 수행 결과의 행렬을 반환함
+  - 결측치가 있는 컬럼을 더미화하면 결측도 하나의 값으로 보고 결측을 표시하는 컬럼을 생성한다.
+    - 결측치가 있는 문자열 컬럼을 더미화 진행하면 결측도 하나의 값으로 보기 때문에 더미화 후 결측치를 확인해보면 결측치가 없어진다.
 
 
 1. `from sklearn.preprocessing import OneHotEncoding`
