@@ -1,4 +1,4 @@
-# 확률적 경사 하강법
+# 확률적 경사 하강법 (Statistical Gradient Descent)
 > 에러를 최소화 하기 위한 방안이다. (손실을 줄이는 알고리즘)
 > 랜덤하게 샘플을 선택하고 기울기를 조정하며 최저점을 찾는 방안이다.
 > ![](https://images.velog.io/images/arittung/post/c042f965-cbc2-4ab7-9e60-3194ed2038b0/image.png)
