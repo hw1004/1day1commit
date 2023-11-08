@@ -31,6 +31,14 @@
 > **Flatten**
 > - convolution, pooling층의 결과인 **feature map**을 1차원 벡터로 펴는 것을 말함
 >
+>**Drop out**
+> - 은닉층에 배치된 노드(뉴런) 중 일부를 임의로 꺼주는 것
+> ![](https://thebook.io/img/080324/235.jpg)
+> - 랜덤하게 노드를 끄기 때문에 학습 데이터에 지나치게 치우쳐서 학습되는 과적합 방지 가능
+> 
+>![](https://thebook.io/img/080324/236.jpg)
+>
+>
 > convolution > pooling > flatten 이후 fully connected 층에서 모두 연결되어 다층 퍼셉트론의 구조를 가진다. 최종적으로는 활성화 함수(softmax)를 이용하여 이미지가 분류된다.
 
 
@@ -38,9 +46,40 @@
 - **합성곱 계층**(conv2D)은 이미지에 필터링 기법을 적용한다.
 - **풀링 계층**(MaxPooling2D)은 이미지의 국소적인 부분들을 하나의 대표적인 스칼라 값으로 변환함으로써 이미지의 크기를 줄이는 등의 기능을 수행한다.
 
-
+## Convolution, MaxPooling 모델
 1. `from tensorflow.keras import layers`, `from tensorflow.keras import models`
 2. `model = models.Sequential()`: 신경망 객체를 생성한다.
 3. 합성곱층 생성
    - 합성곱 계층: `model.add(layers.Conv2D(32, (3,3), activation='relu', input_shape=(28, 28, 1)))`
    - 풀링 계층:`model.add(layers.MaxPooling2D(2,2,))` 
+
+## 이미지
+1. `import cv2`
+2. 이미지 파일을 Color로 읽어온다.
+   - `img_color = cv2.imread(경로, cv2.IMREAD_COLOR)`
+3. 컬러 이미지를 채널멸로 분리한다.
+   - `b, g, r = cv2.split(img_color)`
+4. 각 채널의 이미지에서 merge 함수를 사용해 채널의 이미지를 합칠 수 있다. 하나의 채널 이외의 빈 이미지를 사용하면 그 채널만 강조된 이미지를 볼 수 있다.
+   - `zeros = np.zeros((img_color.shape[0], img_color.shape[1]), dtype=uint8)`
+   - `b = cv2.merge([b, zeros, zeros])`: b 색만 강조된 이미지 반환
+
+## MNIST 이미지 인식에 컨볼루션 신경망 적용
+1. 이미지 데이터 로드 및 전처리 진행
+   - `from tensorflow.keras.datasets import mnist`
+   - `from tensorflow.keras.utils import to_categorical`
+   - `(X_train, Y_train), (X_test, Y_test) = mnist.load_data()`
+2. 정규화
+   - `X_train = X_train.reshape(X_train.shape[0], 28, 28, 1).astype('float32') / 255`
+   - test 데이터도 동일하게 정규화를 진행한다.
+3. 원-핫 인코딩
+   - `Y_train = to_categorical(Y_train, 10)`
+   - `Y_test = to_categorical(Y_test, 10)`
+4. **컨볼루션 신경망 모델 설정**
+   - `from tensorflow.keras.models import Sequential`
+   - `from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D,AveragePooling2D`
+   - 모델 생성
+   - `model = models.Sequential()`
+   - 컨볼루션층 생성: `model.add(layers.conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)))`
+   - 풀링층 생성: `model.add(layers.MaxPooling2D((2,2,)))`
+   - 
+
