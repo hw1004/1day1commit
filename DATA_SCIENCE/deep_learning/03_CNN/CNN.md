@@ -5,6 +5,9 @@
 > - 동일 객체라도 전체적인 픽셀을 보았을 때 환경의 변화에 따라 변화가 큰 것들이 존재한다.
 >   - 전체를 가지고는 같은 객체인지 판단하기 어렵지만 부분의 특징을 추출하고 결합하였을 때, 판단이 더 쉬워진다. (CNN의 장점)
 >
+> 1. **특징 추출**: Convolution Layer + Pooling Layer를 반복
+> 2. **분류기**: Dense layer + Dropout Layer(과적합 방지) + Dense Layer
+>
 > ![](https://velog.velcdn.com/images%2Fdltjrdud37%2Fpost%2Fc6c85370-639c-4261-8cef-f418226d66f5%2Fcnn_banner.png)
 >
 > **합성곱**
@@ -30,6 +33,7 @@
 >
 > **Flatten**
 > - convolution, pooling층의 결과인 **feature map**을 1차원 벡터로 펴는 것을 말함
+> - 컨볼루션 층과 맥스 풀링층을 지나 다시 **Dense()함수를 이용해 만들었던 기본층에 연결**할 때
 >
 >**Drop out**
 > - 은닉층에 배치된 노드(뉴런) 중 일부를 임의로 꺼주는 것
@@ -81,5 +85,35 @@
    - `model = models.Sequential()`
    - 컨볼루션층 생성: `model.add(layers.conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)))`
    - 풀링층 생성: `model.add(layers.MaxPooling2D((2,2,)))`
-   - 
-
+   - 컨볼루션층, 풀링층 반복
+   - dropout 생성: `model.add(Dropout(0.25))`: 0.25%만큼의 노드를 dropout한다.
+   - flatten층 생성: `model.add(Flatten())`
+   - Dense()층과 연결: `model.add(Dense(128, activation='relu'))`
+   - Dropout(과적합 방지): `model.add(Dropout(0.5))`
+   - Dense()층으로 마무리: `model.add(Dense(10, activation='softmax))`
+5. 모델 컴파일
+   - `model.compile(loss='categorical_crossentropy', optimizer='adam', metrics='accuracy')`
+6. 생성한 모델을 저장한다.
+   - `from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping`
+   - `import os`
+   - 모델 디렉토리를 생성한다.: `MODEL_DIR = '경로'`
+     - 경로 존재 여부에 따른 조건 부여: `if not os.path.exists(MODEL_DIR): os.mkdir(MODEL_DIR)`
+   - 모델 안에 파일로 저장한다.: `modelpath="./model/{epoch:02d}-{val_loss:.4f}.hdf5"`
+   - `checkpointer = ModelCheckpoint(filepath = modelpath, monitor='val_loss', verbose=1, save_best_only=True)`
+     - **특정 에포크에서 모델의 가중치를 저장할 수 있음**
+     - `filepath`: 모델을 저장할 경로
+     - `monitor`: 모델을 저장할 때 기준이 되는 값 (val_loss: 검증 셋의 손실이 가장 작을 때 저장, loss: 학습 셋의 손실이 가장 작을 때 모델 저장)
+     - `save_best_only`: True인 경우, monitor 되고 있는 값을 기준으로 가장 좋은 값으로 모델 저장, False인 경우, 매 에폭마다 모델이 filepath{epoch}로 저장됨
+7. 모델 최적화 단계에서 학습 자동 중단을 설정한다. (**Early Stopping**)
+   - `early_stopping_clbk = EarlyStopping(monitor='val_loss', patience=10)`
+     - **손실이 더 이상 개선되지 않을 때 학습을 중지**
+     - `patience`: 개선이 안된다고 바로 종료하지 않고 개선을 위해 몇번의 에포크를 기다릴지 설정
+8. 모델 실행/학습
+   - `history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=30, batch_size=200, callbacks=[early_stopping_clbk, checkpointer])`
+     - `batch_size`: 전체 학습 데이터 셋을 여러 작은 그룹으로 나누었을 때 batch size는 하나의 소그룹에 속하는 데이터 수를 말한다.
+     - `callbacks`: 모델 학습 중에 추가적인 동작을 수행하도록 지정한다. (ModelCheckpoint, EarlyStopping 등이 있음)
+9. 모델 평가 (테스트 정확도를 출력한다.)
+    - `model.evaluate(X_test, Y_test)[1]`: accuracy를 반환한다.
+    - 테스트 셋의 오차: `history.history['val_loss']`
+    - 학습셋의 오차:`history.history['loss']`
+10. 테스트 셋의 오차와 학습셋의 오차가 에포크가 진행되면서 어떻게 변화하는지 그래프로 나타낸다.
