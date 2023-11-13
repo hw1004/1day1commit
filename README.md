@@ -7,14 +7,6 @@ ___
 ### CLI
 - [CLI 기본 명령어](https://github.com/hw1004/1day1commit/blob/main/CLI/CLI_%EC%A0%95%ED%98%9C%EC%9B%90.md)
 
-### Data Science
-#### Machine Learning
-- [Python data analysis basic(Numpy, Pandas, Matplotlib)](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/python/python_analysis_packages.md)
-- [Machine Learning Basic](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/machine_learning_basic.md)
-- [K-Nearest Neighbor](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/01_KNN)
-- [Data Preprocessing](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/02_Data_preprocessing)
-- [Regression](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/03_Regression)
-
 ### Algorithms
 - [Sort algorithms](https://github.com/hw1004/TIL/blob/main/algorithms/sort_algorithms.md)
 - [Data structure](https://github.com/hw1004/TIL/blob/main/algorithms/data_structure.md)
@@ -54,3 +46,20 @@ ___
 ### Database
 - [MySQL Basic](https://github.com/hw1004/TIL/blob/main/DB/MySQL.md)
 - [Entity Relationship Diagram(ERD)](https://github.com/hw1004/TIL/blob/main/DB/ERD.md)
+
+### Data Science
+#### Machine Learning
+- [Python data analysis basic(Numpy, Pandas, Matplotlib)](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/python/python_analysis_packages.md)
+- [Machine Learning Basic](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/machine_learning_basic.md)
+- [K-Nearest Neighbor](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/01_KNN)
+- [Data Preprocessing](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/02_Data_preprocessing)
+- [Regression](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/03_Regression)
+- [Evaluation Metrics](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/04_Evaluation_Metric/evaluation_metric.md)
+- [Classification](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/05_Classification)
+- [Cross Validation](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/06_Model_Selection/model_selection.md)
+
+#### Deep Learning
+- [Artificial Neural Network(keras)](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/deep_learning/01_Artificial_Neural_Network)
+- [Image Data Preprocessing](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/deep_learning/02_Data_preprocessing)
+- [CNN](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/deep_learning/03_CNN)
+- [NLP](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/deep_learning/04_NLP)
