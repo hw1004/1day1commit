@@ -71,7 +71,7 @@
 > 특성이 늘어나면 선형회귀의 능력이 매우 강해진다.
 
 ![다중회귀](https://user-images.githubusercontent.com/17154958/72317675-5af68880-36dd-11ea-94d2-9174fdfc70bd.png)
-
+ 
 1. 여러 특성을 가지는 DataFrame을 2차원 배열 형태로 변환한다.: `df.to_numpy()`
 2. 타겟데이터의 데이터 배열을 생성한다. `weight = np.array([~])`
 3. 학습데이터와  테스트데이터를 임의로 나누어 정한다. `train_input, test_input, train_target, test_target = train_test_split(full, weight, random_state=42)`
