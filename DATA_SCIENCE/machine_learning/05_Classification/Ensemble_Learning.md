@@ -49,13 +49,17 @@
 10. `accuracy_score(y_test, pred)`: 실제값과 예측값을 비교해 Voting 분류기의 정확도를 계산한다.
 
 
-## 배깅(Bagging) 방식의 앙상블 예제
+## 배깅(Bagging) 방식의 앙상블 예제 (랜덤포레스트)
 1. `from sklearn.ensemble import RandomForestClassifier`
 2. `rf_clf = RandomForestClassifier(random_state=0, n_estimators=150)`: 랜덤 포레스트 객체 생성
    - `n_estimators`: 결정 트리의 개수 (개수를 증가시킨다고 무조건적으로 성능이 향상되는 것은 아니다.)
 3. `rf_clf.fit(X_train, y_train)`: 학습시킨다.
 4. `pred = rf_clf.predict(X_test)`: 테스트 데이터 예측
 5. `accuracy_score(y_test, pred)`: 실제값과 예측값을 비교해 랜덤 포레스트의 정확도를 계산한다.
+6. GridSearchCV로 교차검증 및 하이퍼 파라미터 튜닝
+   - `RandomForestClassifier(random_state=0, n_jobs=-1)`: 랜덤포레스트 객체 생성
+   - `grid_cv = GridSearchCV(rf_clf, param_grid=params, cv=2, n_jobs=-1)`: params에서 n_estimators를 100으로 설정
+     - n_estimators는 결정 트리의 개수이고 많이 설정할 수록 좋은 성능을 기대하지만 너무 많이 설정하면 과적합 발생할 수 있음
 
 
 ## 개별 feature들의 중요도 시각화
