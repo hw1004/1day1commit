@@ -27,4 +27,20 @@ print(bs_obj.prettify())
 
 - 원하는 내용 추출하기
 1. find(태그, [{속성명: 속성값}])
-2. findAll(태그, [{속성명: 속성값}]): find_all과 같
+   - `bs_obj.find('div', {'class': 'reply'}).text`: class값이 reply인 div 태그 반환
+   - `bs_obj.find('div', {'id': 'mainMenuBox})`: id가 mainMenuBox인 div 태그 반환 (아이디는 유일하기 때문에 `bs_obj.select('#mainMenuBox')`처럼 태그 명시하지 않아도 됨)
+2. findAll(태그, [{속성명: 속성값}]): find_all과 같음
+   - `bs_obj.find_all('li', {'class': 'reply'})`
+3. 첫번째 태그를 기준으로 다음 태그 반환
+   - `bs_obj.find('p').next_sibling`
+4. 태그의 속성값 추출
+   - `bs_obj.find('a')['href']`: a 태그의 href 속성값 추출
+5. 특정 태그를 모두 찾아서 list로 반환
+   - `bs_obj.select('a')`: a 태그 모두 찾아서 list로 반환
+
+- css 선택자
+  - 태그 선택자: 태그명
+  - id 선택자: #id값 (ex. p #id)
+  - class 선택자: .클래스 값 (ex. div .first)
+  - 자식 선택자(`>`): 바로 아래 선택자 (ex. div .first > ul)
+  - 자손 선택자(공백문자): 모든 아래 선택자 (ex. div .first ul)
