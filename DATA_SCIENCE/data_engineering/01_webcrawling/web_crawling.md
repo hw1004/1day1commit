@@ -25,7 +25,7 @@ bs_obj = bs4.BeautifulSoup(html, 'html.parser')
 print(bs_obj.prettify())
 ```
 
-- 원하는 내용 추출하기
+- 원하는 내용 추출하기 (웹에서 F12 또는 검사 통해서 소스코드 확인)
 1. find(태그, [{속성명: 속성값}])
    - `bs_obj.find('div', {'class': 'reply'}).text`: class값이 reply인 div 태그 반환
    - `bs_obj.find('div', {'id': 'mainMenuBox})`: id가 mainMenuBox인 div 태그 반환 (아이디는 유일하기 때문에 `bs_obj.select('#mainMenuBox')`처럼 태그 명시하지 않아도 됨)
@@ -58,3 +58,24 @@ headers = {'User-Agent':
            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
 res = requests.get(url, headers=headers)
 ```
+
+## 3. 추출한 데이터 Dataframe으로 합치기
+1. 빈 데이터프레임 생성 후 데이터를 행으로 추가하기
+```
+# 빈 df 생성
+nate_menu = pd.DataFrame({'메뉴':[], '링크':[]})
+
+```
+2. 각각의 행을 데이터프레임으로 생성 후 concat으로 결합
+```
+index = 0
+for li in menu_li :
+    menu_text = li.text
+    menu_link = li.a['href']
+    if menu_link == '' or menu_link == 'javascript:;' or menu_text in nate_menu['메뉴'].values :
+        continue # 아래 코드 실행하지 않음
+    temp = pd.DataFrame({'메뉴':menu_text,'링크':menu_link},index=[index])
+    nate_menu = pd.concat([nate_menu, temp])
+    index = index +1
+```
+
