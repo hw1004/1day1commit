@@ -44,3 +44,17 @@ print(bs_obj.prettify())
   - class 선택자: .클래스 값 (ex. div .first)
   - 자식 선택자(`>`): 바로 아래 선택자 (ex. div .first > ul)
   - 자손 선택자(공백문자): 모든 아래 선택자 (ex. div .first ul)
+
+## 자동화 봇으로 보고 연결 끊는 경우 해결방법
+- 통신 규칙상 웹으로의 요청은 브라우저를 통해서 연결하는 것이 약속임
+- 소스 코드로 요청하면 서버측에서는 공격으로 인지 할 수 있고 그렇게 되면 해당 서버는 연결을 끊는다.
+- **서버에 요청할 때 header를 추가해서 봇이 아님을 증명**
+  - header에 브라우저의 종류 추가해서 요청 (User-Agent)
+  - 현재 사용중인 브라우저의 정보를 얻어와서 header에 추가
+  - 크롬 개발자 도구(F12) > Network > All > 맨 위 > User-Agent
+
+```
+headers = {'User-Agent': 
+           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
+res = requests.get(url, headers=headers)
+```
