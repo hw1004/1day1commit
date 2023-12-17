@@ -33,6 +33,7 @@ ___
 - [Git](https://github.com/hw1004/1day1commit/blob/main/git/git_%EC%A0%95%ED%98%9C%EC%9B%90.md)
 - [Version control](https://github.com/hw1004/1day1commit/blob/main/git/git_version.md)
 - [Pull request](https://github.com/hw1004/1day1commit/blob/main/git/git_pull_request.md)
+- [gitignore](https://github.com/hw1004/TIL/blob/main/git/gitignore.md)
 
 
 ### Web
@@ -48,6 +49,10 @@ ___
 - [Entity Relationship Diagram(ERD)](https://github.com/hw1004/TIL/blob/main/DB/ERD.md)
 
 ### Data Science
+#### Data Engineering
+- [Web crawling](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/data_engineering/01_webcrawling)
+- [API](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/data_engineering/02_API)
+
 #### Machine Learning
 - [Python data analysis basic(Numpy, Pandas, Matplotlib)](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/python/python_analysis_packages.md)
 - [Machine Learning Basic](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/machine_learning_basic.md)
@@ -57,6 +62,8 @@ ___
 - [Evaluation Metrics](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/04_Evaluation_Metric/evaluation_metric.md)
 - [Classification](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/05_Classification)
 - [Cross Validation](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/machine_learning/06_Model_Selection/model_selection.md)
+- [Unsupervised Learning](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/machine_learning/07_Unsupervised_Learning)
+- [Content based filtering recommendation system](https://github.com/hw1004/TIL/blob/main/DATA_SCIENCE/recommendation_system/content_based_filtering_recommendation_system.md)
 
 #### Deep Learning
 - [Artificial Neural Network(keras)](https://github.com/hw1004/TIL/tree/main/DATA_SCIENCE/deep_learning/01_Artificial_Neural_Network)
