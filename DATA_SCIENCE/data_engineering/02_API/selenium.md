@@ -33,6 +33,8 @@ def create_driver() :
 
 ## 페이지 접근 드라이버/브라우저 종료
 - **페이지 접근**: `driver.get(url)`
+  - 동적으로 브라우저 핸들링 할 때 약간의 지연이 있을 수 있으므로 기다린다. : `driver.implicitly_wait(2)`
+- 브라우저 크기 max로 설정: `driver.maximize_window()`
 - **화면 캡쳐**: `dirver.save_screenshot('shot.png')`
 - **드라이버/브라우저 종료**: `driver.close()`
   
@@ -52,3 +54,33 @@ soup.find(id='content')
   - `By.ID`, `By.CSS_SELECTOR`, `By.NAME`, `By.XPATH` 등
 - `id_elem.get_attribute('innerHTML')`: webelement 객체 내부의 html 소스코드를 추출한다.
 - `id_elem.get_attribute('id')`: webelement 객체의 id를 반환한다.
+
+## 다른 페이지/검색 버튼 클릭
+- `driver.find_element(By.CSS_SELECTOR, sel).click()`
+1. 다른 페이지 (ex. 네이버 페이지에서 쇼핑 클릭) 클릭: 클릭을 통해서 쇼핑 페이지로 들어가면 브라우저 탭(윈도우)이 하나 더 열려서 driver가 핸들링 할 수 있는 창이 2개가 됨
+   - `print(driver.window_handles)`: 현재 드라이버의 활성창 확인
+   - `driver.switch_to.window(driver.window_handles[1])`: driver의 활성창을 두번째 탭인 쇼핑 페이지 탭으로 변경
+   - `driver.close()`: driver 닫을 때 두개의 탭이 열려 있으므로 close 두번 진행해야 한다.
+2. 검색 버튼 클릭: 검색창에 검색할 내용 값 전송 후 클릭
+   - `search.send_keys('아이폰 13')`
+   - `from selenium.webdriver.common.keys import Keys`
+   - `search.send_keys(Keys.ENTER)`: click과 같은 효과
+
+## 페이지의 스크롤 동작
+1. 탭에서 스크롤의 현재 위치를 저장한다.
+   - `before_h = driver.execute_script('return window.scrollY')`
+2. 무한 스크롤을 진행한다.
+   - ```
+      while True : 
+          # 창의 가장 아래로 스크롤 내림, 스크롤이 창 바닦에 닿으면 새로운 창이 확장됨
+          driver.find_element(By.CSS_SELECTOR,"body").send_keys(Keys.END)
+          # 스크롤 사이 페이지 로딩시간 대기
+          time.sleep(1)
+          # 스크롤 후 높이
+          after_h = driver.execute_script('return window.scrollY')
+          print(after_h)
+          if after_h==before_h:
+              break
+          before_h = after_h
+     ```
+3. 필요한 정보 추출
