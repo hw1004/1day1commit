@@ -68,7 +68,7 @@ soup.find(id='content')
 
 ## 페이지의 스크롤 동작
 1. 탭에서 스크롤의 현재 위치를 저장한다.
-   - `before_h = driver.execute_script('return window.scrollY')`
+   - `before_h = driver.execute_script('return window.scrollY')`: javascript 코드로 동작
 2. 무한 스크롤을 진행한다.
    - ```
       while True : 
