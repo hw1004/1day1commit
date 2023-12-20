@@ -9,6 +9,7 @@
 
 ## 개념
 1. user
+
 |code|description|
 |---|---|
 |`useradd [사용자명]`|사용자 생성|
@@ -16,6 +17,7 @@
 |`userdel [option] [사용자명]`|사용자 삭제|
 
 2. file
+
 |code|description|
 |---|---|
 |`cp file1 file2`|file 복사|
@@ -40,6 +42,7 @@
   - vim으로 text 파일 들어가서 esc - i로 입력모드로 전환하고 수정사항 변경 후 esc - :wq 하면 저장하고 종료
 
 5. etc
+
 |code|description|
 |---|---|
 |`ls`|목록 출력|

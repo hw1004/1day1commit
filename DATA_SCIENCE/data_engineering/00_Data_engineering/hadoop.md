@@ -1,0 +1,1 @@
+## Data Lake vs Data WareHouse vs DataMart
