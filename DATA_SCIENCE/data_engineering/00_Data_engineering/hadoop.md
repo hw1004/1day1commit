@@ -13,21 +13,45 @@
 
 ### Hadoop 주요 모듈(프로세스)
 1. Hadoop Common: common component module
-2. **Hadoop HDFS**: **분산저장 처리**를 위한 모듈 (여러개의 서버를 하나의 서버처럼 묶어서 데이터 저장)
+2. **Hadoop HDFS (파일 시스템)**: **분산저장 처리**를 위한 모듈 (여러개의 서버를 하나의 서버처럼 묶어서 데이터 저장)
    - namenode : metadata, datanode 관리 (데이터를 읽고 쓸 수 있음)
    - datanode : 파일 block 단위로 저장
-3. **Hadoop YARN**: **병렬처리**를 위한 클러스터 자원관리, 스케줄링 담당
-4. **Hadoop Mapreduce**: 분산되어 있는 데이터의 **병렬 처리**를 도와주는 **분산 처리 모듈**
+3. **Hadoop YARN (리소스 관리)**: **병렬처리**를 위한 클러스터 자원관리, 스케줄링 담당
+4. **Hadoop Mapreduce (연산 엔진)**: 분산되어 있는 데이터의 **병렬 처리**를 도와주는 **분산 처리 모듈**
 5. Hadoop Ozone: object storage for Hadoop
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/had.jpg)
 
-## Apache Spark
+## Apache Spark (연산 엔진)
 > 오픈 소스 클러스터 컴퓨팅 프레임워크 (SQL, 스트리밍, 머신러닝, 그래프 처리를 위한 모듈이 있는 데이터 처리용 분석 엔진)
 >
 > 높은 수준의 API를 제공하는 오픈소스 범용 **분산 처리 시스템**
 >
 > Apache Kafka가 실시간으로 생성한 데이터 스트림에 대한 데이터 처리 수행한다.
+
+- 데이터를 여러개로 분리해서 여러 노드의 메모리에서 동시에 처리한다.
+
+### **RDD (Resilient Distributed Dataset)** 
+- spark가 사용하는 핵심 데이터 모델로 다수의 서버에 걸쳐 분산 방식으로 저장된 데이터 요소들의 집합이다.
+  - 여러 분산 노드에 걸쳐 저장
+  - 변경 불가능
+  - 여러 개의 파티션으로 분리
+  - 처리할 때는 동시에 병렬로 처리할 수 있음
+  - **데이터 추상화**: 데이터는 클러스터에 흩어져 있지만 하나의 파일인 것처럼 사용한다.
+  - 결과가 필요할 때까지 연산하지 않음(**지연연산**)
+    - Transformation: 결과값으로 새로운 rdd 반환 (결과값 필요할 때까지 연산법만 기억)
+    - Action (ex. collect()): 즉시 실행
+    - ![](https://miro.medium.com/v2/resize:fit:726/1*BaQ7kuuENGOWbV7JII0gEA.png)
+
+- **Key와 Value 쌍을 가지고 있을 수 있음 (pair RDD)**
+  - `reduceByKey()`: 키 값 기준 연산 처리
+  - `groupByKey()`: 키 값 기준으로 value group by 진행
+  - `sortByKey()`: 키 값 기준으로 정렬
+1. Data-parallel: 데이터를 여러개로 쪼개서 작업하고 결과값을 반환 받아 합침
+   - `sc.parallelize()`: 파이썬 객체를 spark cluster로 가져옴
+   - `getNumPartitions()`: partition 개수 반환
+   - `collect()`: 데이터 반환
+2. Data-Distributed: 데이터를 여러개로 쪼개서 여러 노드로 보내고 독립적으로 작업한 후 결과값을 반환 받아 합침
 
 ## Apache Kafka
 > 실시간으로 발생하는 이벤트에 대한 오픈 소스 분산 **스트리밍** 플랫폼
