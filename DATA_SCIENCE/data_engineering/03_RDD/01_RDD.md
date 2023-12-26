@@ -37,3 +37,22 @@ def single2key(rdd):
    - `count_mapvalues = count.mapValues(lambda x : (x, 1))` : 지연 연산 
    - 원래 ('짜장면', 4) 형식의 map 객체를 ('짜장면', (4, 1)) 형식으로 바꾼다.
 5. 연산함수 연산 진행: `count_mapvalues.collect()`
+
+
+## RDD 기본 함수
+|function|description|ex|
+|---|---|---|
+|`take(하위집합의 수)`|RDD 데이터의 일부를 확인하는데 사용되고 하위집합의 수만큼의 데이터만 불러온다.|`foods.take(3)`|
+|`first()`|데이터의 첫번째 하위 집합을 반환한다.|`foods.first()`|
+|`counts()`|rdd 객체의 하위집합 수를 반환한다.|`foods.count()`|
+|`distinct()`|중복을 제외한 원소를 생성한다.|`foods.distinct().collect()`|
+|`foreach(연산함수)`|RDD의 각 요소에 연산함수를 적용하는 연산함수이다.|`def f_tmp(x) : print(x)`라는 함수가 있을 때 rdd 객체인 foods에 대해 `foods.foreach(f_tmp)`를 통해 foods의 각 원소에 f_tmp 함수를 적용할 수 있다.|
+|`foreachPartition`|RDD 파티션에 기능을 적용한다. 파티션별로 일부 작업을 수행할 때 사용한다.|`def f1(iterator): for x in iterator: print(x)`라는 함수가 있을 때 rdd 객체인 foods에 대해 `foods.foreachPartition(f1)`을 통해 파티션별로 f1 함수를 수행할 수 있다.|
+|`map()`|iterable한 data structure의 모든 요소 각각에 함수를 적용시킨다. (key-value 생성할 때 주로 사용한다.)|`sc.parallelize([1, 2, 3]).map(lambda x: x+2).collect()`|
+|`flatMap()`|iterable한 객체의 각 요소를 한 단계 더 작은 단위로 쪼갠다. map 기능에 flat 기능이 포함된다.|`flatmapMovies = movieRDD.flatMap(lambda x: x.split(" "))`: split() 적용해서 2차원 구조로 완성된 결과에 flat 적용해서 1차원으로 변환한다.|
+|`filter(조건함수)`|조건함수에 만족하는 데이터만 추출한다.|`flatmapMovies.filter(lambda x: x != "매트릭스")`|
+|`intersection()`|교집합|`num1.intersection(num2)`|
+|`union()`|합집합(중복 포함)|`num1.union(num2)`|
+|`subtract()`|차집합|`num1.subtract(num2)`: num1에서 num2의 원소 빼기|
+|`groupBy([함수])`|요소들을 동일한 key값으로 분류하는 함수|`foods.groupBy(lambda x: x[0])`: 각 요소의 첫글자가 같은 요소들끼리 그룹 생성|
+
