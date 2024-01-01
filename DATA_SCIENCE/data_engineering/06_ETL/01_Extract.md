@@ -31,3 +31,33 @@ import datetime as dt
    - `client.set_permission('/corona_data/loc', '777')`
 6. hdfs 삭제
    - `client.delete('/corona_data/loc/sido_area.xlsx)`
+
+## 공공데이터 API 수집 후 hdfs 저장 예제
+1. REST_API로 일간 코로나 발생 데이터(전국)를 호출해서 hdfs에 저장한다.
+```
+def executeRestApi(method, url, headers, params):  
+    
+    # raise Exception('응답코드 : 500')  # 예외 테스트
+    # err_num = 10/0 # 예외 테스트
+    if method == "get":
+        res = requests.get(url, params=params, headers=headers)
+    else:
+        res = requests.post(url, data=params, headers=headers)
+
+    if res == None or res.status_code != 200:
+        raise Exception('응답코드 : ' + str(res.status_code))
+       
+    return res.text
+
+
+```
+2. 어느 기준일자부터 현재까지의 데이터를 끌어올지 정하기 위해서 기준일자를 구하는 함수를 생성한다.(5일 전이면 5일 전 데이터부터 현재 데이터)
+```
+# 현재 날짜로부터 befor_day 만큼 이전의 날짜를 생성해주는 함수
+def cal_std_day(befor_day):   
+    x = dt.datetime.now() - dt.timedelta(befor_day)
+    year = x.year
+    month = x.month if x.month >= 10 else '0'+ str(x.month)
+    day = x.day if x.day >= 10 else '0'+ str(x.day)  
+    return str(year)+ '-' +str(month)+ '-' +str(day)
+```
