@@ -61,3 +61,39 @@ def cal_std_day(befor_day):
     day = x.day if x.day >= 10 else '0'+ str(x.day)  
     return str(year)+ '-' +str(month)+ '-' +str(day)
 ```
+3. api 호출
+```
+url = 'http://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api'
+service_key = '공공데이터 웹사이트에서 제공하는 개인 서비스키'
+file_dir = '/corona_data/patient/'
+
+# 일자에 대한 해당 파라미터 생성
+def create_param(std_day) : 
+    return {'serviceKey' : service_key
+            ,'pageNo' : 1
+            ,'numOfRows' : '500'
+            ,'apiType' : 'JSON'
+            ,'std_day' : cal_std_day(std_day)}
+```
+4. api 호출해서 data를 추출하고 만들어둔 함수를 이용해서 hdfs에 저장한다. 저장에 문제가 있을 경우 log file에 저장하도록 설정한다.
+```
+for i in range(365,367) :
+    params = create_param(i) # api 요청 파라미터 생성
+    log_dict={
+        "is_sucess":"Fail"
+       ,"type":"corona_patient"
+       ,"std_day":params['std_day']
+       ,"params" :params
+    }
+    try:
+        res = executeRestApi('get', url,{}, params) # 공공데이터 api에서 data 추출
+        file_name='corona_patient_'+cal_std_day(i)+'.json' # 저장 파일명 생성
+        client.write(file_dir+file_name,res,encoding='utf=8') # hdfs에 저장
+    except Exception as e :
+        log_dict['err_msg']= e.__str__() # Exception객체 내 에러메시지를 반환
+        log_json = json.dumps(log_dict, ensure_ascill=False) # json형태로 기록
+        co_logger.error(log_json) # 로그 파일에 기록
+        
+```
+
+## 웹크롤링 hdfs 저장 예제
