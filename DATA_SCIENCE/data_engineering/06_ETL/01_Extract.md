@@ -97,3 +97,38 @@ for i in range(365,367) :
 ```
 
 ## 웹크롤링 hdfs 저장 예제
+1. 만약 csv 파일에 loc, new, accumulate, rate 컬럼이 있으면 `cols = ['loc', 'new', 'accumulate', 'rate']`로 컬럼들을 명시해 주고, 각 행의 데이터를 추가하는 list 원소를 생성한다. (ex) tuple_t = []에 append로 한 행에 대한 정보를 넣고 for loop을 돌린다.
+   - cols와 tuple_t에 대해 `for idx, tr, in enumerate(trs):`로 for loop을 돌리고 각 행마다 data = []에 {'컬럼명': 값} 형식으로 각 행들이 들어가게끔 `data.append(dict(zip(cols, tuple_t)))` 코드를 작성한다.
+2. json에 포함시킬 meta data를 구성한다.
+   - ```
+        # json에 포함시킬 meta data 구성
+        res = {
+                'meta':{
+                    'desc':'지역별 코로나 예방접종 인구 현황',
+                    'cols':{
+                        'loc':'지역'
+                        ,'new':'신규접종'
+                        ,'accumulate':'누적접종' 
+                    ,'rate' : '접종률'
+                        },
+                    'stdDay':cal_std_day(1)
+                },
+                'data':data
+        }
+        res
+     ```
+3. 어제의 데이터를 json 파일로 저장한다.
+   - ```
+        file_dir='/corona_data/vaccine/'
+        file_name='corona_vaccine_'+cal_std_day(1)+'.json'
+        client.write(file_dir+file_name,json.dumps(res,ensure_ascii=False),encoding='utf=8')
+     ```
+    - `json.dumps()`: python 객체를 json 문자열로 변환하는 함수
+    - `ensure_ascii=False`: True이면 ascii가 아닌 다른 문자들을 모두 이스케이프 문자로 표현한다. 따라서 이를 False를 설정하면 한글도 잘 출력되게 설정해줄 수 있다.
+4. 저장한 데이터 파일 읽어오기
+   - ```
+        file_dir='/corona_data/vaccine/'
+        file_name='corona_vaccine_'+cal_std_day(1)+'.json'
+        vaccine=spark.read.json(file_dir+file_name)
+        vaccine.show()
+     ```
