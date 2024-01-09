@@ -23,4 +23,12 @@ JDBC = {
 ```
 
 1. LOC 테이블 저장
-   - 
+   - hdfs에 csv 파일로 저장해 놓은 파일을 호출해서 **필요한 columns** 추출하고 db table에 저장한다.
+   - `csvfile = spark.read.csv(경로, encoding='CP949', header=True)`
+   - 필요한 컬럼만 저장
+   - `necessary_cols = csvfile.join(othercsv, on='loc')`: loc 컬럼 기준으로 csvfile, othercsv 파일 조인
+   - `necessary_cols.select(col('loc').alias('LOC'), col('area').alias('AREA'))`
+2. spark.dataframe을 dbms의 table에 저장
+   - `necessary_cols.write.mode('overwrite').jdbc(url=JDBC['url'], table='LOC', properties=JDBC['props'])`
+   - db 주소, 테이블명, 계정 연결 정보 입력
+   - overwrite: 기존 테이블이 있으면 해당 테이블에 새로 저장되는 레코드로 덮어쓴다.
