@@ -8,6 +8,10 @@
 ## DAG(Directed Acyclic Graph)
 - airflow에서 실행할 작업들을 **순서에 맞게** 구성한 workflow
 - DAG를 구성하는 각 작업들을 task라고 함
+  
+## 스케줄
+- DAG에서 처리하는 task들
+- task1 >> task2 >> task3 처럼 스케줄 작업 순서를 지정할 수 있음(예를 들어, dw에 밀어넣고 dm에 밀어넣어야 하는 스케줄은 순서대로 진행되어야 함)
 
 ## Data Pipeline
 1. 수집 후 DL(hdfs)에 저장하는 프로그램 (corona_extract.py)
