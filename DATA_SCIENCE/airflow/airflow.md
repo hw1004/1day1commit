@@ -8,3 +8,12 @@
 ## DAG(Directed Acyclic Graph)
 - airflow에서 실행할 작업들을 **순서에 맞게** 구성한 workflow
 - DAG를 구성하는 각 작업들을 task라고 함
+
+## Data Pipeline
+1. 수집 후 DL(hdfs)에 저장하는 프로그램 (corona_extract.py)
+   - api 또는 page 크롤링 후 data hdfs에 저장
+2. DL(HDFS)에 저장된 파일을 DW DB에 변환 저장하는 프로그램 (corona_transform_dw.py)
+3. DW에 저장된 파일을 dm db에 변환 저장하는 프로그램 (corona_transform_dm.py)
+   - dw db 테이블 data를 가공 처리하여 dm db에 저장한다.
+
+> 위 작업 pipline을 airflow task로 구성하여 연결한다.
