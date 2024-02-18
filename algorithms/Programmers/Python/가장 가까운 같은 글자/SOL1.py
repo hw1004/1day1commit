@@ -1,5 +1,5 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/142086
-
+# ll분 9초
 def solution(s):
     answer = []
     word = ''
