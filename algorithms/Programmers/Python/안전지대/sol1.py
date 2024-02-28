@@ -1,7 +1,8 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/120866#
 # first try: 1hour 10 minutes (test case 1 returned to be wrong)
+# second try: didn't consider cases when the coordinate gets value outside of the edge. => solved!!
 
-board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]
+board = [[0, 0, 1], [0, 0, 0], [0, 0, 0]]
 answer = 0
 n = len(board[0])
 
@@ -15,82 +16,90 @@ for line in board:
         if region == 1:
             # 지뢰가 있을 경우, board[x][y]를 기준으로 board[x+1][y], board[x+1][y+1], board[x+1][y-1], board[x][y+1], board[x][y-1], board[x-1][y], board[x-1][y+1], board[x-1][y-1]가 0이면 2로 변환한다. 가장자리에 있어서 위의 값들 중 위치상 구할 수 없는 값이 있거나 값이 1이면 그대로 놔둔다.
             try:
-                if board[x+1][y] == 0:
-                    board[x+1][y] = 2
-                if board[x+1][y] == 2:
-                    board[x+1][y] = 2
-                if board[x+1][y] == 1:
-                    board[x+1][y] = 1
+                if (x+1) < n:
+                    if board[x+1][y] == 0:
+                        board[x+1][y] = 2
+                    if board[x+1][y] == 2:
+                        board[x+1][y] = 2
+                    if board[x+1][y] == 1:
+                        board[x+1][y] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
 
             try:
-                if board[x+1][y+1] == 0:
-                    board[x+1][y+1] = 2
-                if board[x+1][y+1] == 2:
-                    board[x+1][y+1] = 2
-                if board[x+1][y+1] == 1:
-                    board[x+1][y+1] = 1
+                if ((x+1) < n) and ((y+1) < n):
+                    if board[x+1][y+1] == 0:
+                        board[x+1][y+1] = 2
+                    if board[x+1][y+1] == 2:
+                        board[x+1][y+1] = 2
+                    if board[x+1][y+1] == 1:
+                        board[x+1][y+1] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
 
             try:
-                if board[x+1][y-1] == 0:
-                    board[x+1][y-1] = 2
-                if board[x+1][y-1] == 2:
-                    board[x+1][y-1] = 2
-                if board[x+1][y-1] == 1:
-                    board[x+1][y-1] = 1
+                if ((x+1) < n) and ((y-1) >= 0):
+                    if board[x+1][y-1] == 0:
+                        board[x+1][y-1] = 2
+                    if board[x+1][y-1] == 2:
+                        board[x+1][y-1] = 2
+                    if board[x+1][y-1] == 1:
+                        board[x+1][y-1] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
 
             try:
-                if board[x][y+1] == 0:
-                    board[x][y+1] = 2
-                if board[x][y+1] == 2:
-                    board[x][y+1] = 2
-                if board[x][y+1] == 1:
-                    board[x][y+1] = 1
+                if (y+1) < n:
+                    if board[x][y+1] == 0:
+                        board[x][y+1] = 2
+                    if board[x][y+1] == 2:
+                        board[x][y+1] = 2
+                    if board[x][y+1] == 1:
+                        board[x][y+1] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
 
             try:
-                if board[x][y-1] == 0:
-                    board[x][y-1] = 2
-                if board[x][y-1] == 2:
-                    board[x][y-1] = 2
-                if board[x][y-1] == 1:
-                    board[x][y-1] = 1
+                if (y-1) >= 0:
+                    if board[x][y-1] == 0:
+                        board[x][y-1] = 2
+                    if board[x][y-1] == 2:
+                        board[x][y-1] = 2
+                    if board[x][y-1] == 1:
+                        board[x][y-1] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
 
             try:
-                if board[x-1][y] == 0:
-                    board[x-1][y] = 2
-                if board[x-1][y] == 2:
-                    board[x-1][y] = 2
-                if board[x-1][y] == 1:
-                    board[x-1][y] = 1
+                if (x-1) >= 0:
+                    if board[x-1][y] == 0:
+                        board[x-1][y] = 2
+                    if board[x-1][y] == 2:
+                        board[x-1][y] = 2
+                    if board[x-1][y] == 1:
+                        board[x-1][y] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
 
             try:
-                if board[x-1][y+1] == 0:
-                    board[x-1][y+1] = 2
-                if board[x-1][y+1] == 2:
-                    board[x-1][y+1] = 2
-                if board[x-1][y+1] == 1:
-                    board[x-1][y+1] = 1
+                if ((x-1) >= 0) and ((y+1) < n):
+                    if board[x-1][y+1] == 0:
+                        board[x-1][y+1] = 2
+                    if board[x-1][y+1] == 2:
+                        board[x-1][y+1] = 2
+                    if board[x-1][y+1] == 1:
+                        board[x-1][y+1] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
 
             try:
-                if board[x-1][y-1] == 0:
-                    board[x-1][y-1] = 2
-                if board[x-1][y-1] == 2:
-                    board[x-1][y-1] = 2
-                if board[x-1][y-1] == 1:
-                    board[x-1][y-1] = 1
+                if ((x-1) >= 0) and ((y-1) >= 0):
+                    if board[x-1][y-1] == 0:
+                        board[x-1][y-1] = 2
+                    if board[x-1][y-1] == 2:
+                        board[x-1][y-1] = 2
+                    if board[x-1][y-1] == 1:
+                        board[x-1][y-1] = 1
             except:  # 위치상 구할 수 없는 값일 때
                 board[x][y] = 1
             if y == n-1:
