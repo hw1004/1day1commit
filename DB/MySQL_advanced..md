@@ -13,3 +13,9 @@ SELECT * FROM TABLE WHERE DAYOFMONTH(COLUMN)="2"
 ORDER BY column1 DESC, column2 DESC
 # column1으로 내림차순 정렬 후 column1이 같은 값에 한해 column2로 내림차순 정렬
 ```
+
+## CASE WEHN
+> 만약 컬럼이 00이면 이렇게하고, ELSE이면 이렇게한다. END로 마무리
+```
+SELECT CASE WHEN TLNO IS NULL THEN 'NONE' ELSE TLNO END
+```
